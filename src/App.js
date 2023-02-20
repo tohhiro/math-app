@@ -18,7 +18,7 @@ function App() {
   const calResetBtn = () => {
     if (btn.b === "+") {
       plusAnswer();
-      setBtn({ b: "Reset" });
+      setBtn({ b: "Clear" });
     } else {
       resetQuestion();
       setBtn({ b: "+" });
