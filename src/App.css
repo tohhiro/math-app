@@ -1,8 +1,13 @@
-html{
+html {
   text-align: center;
   vertical-align: middle;
 }
 
 p {
   margin-top: 10px;
+}
+
+.answerBtn {
+  width: 146px;
+  height: 120px;
 }
