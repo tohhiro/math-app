@@ -58,7 +58,9 @@ function App() {
   return (
     <>
       <p>
-        {qq[0].q} + {qq[1].q}
+        {qq[0].q}
+        <span>+</span>
+        {qq[1].q}
       </p>
 
       <button onClick={calResetBtn}>{btn.b}</button>
