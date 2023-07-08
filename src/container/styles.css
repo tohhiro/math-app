@@ -1,0 +1,24 @@
+div {
+  margin-bottom: 20px;
+}
+
+.qContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 32px;
+}
+
+button {
+  width: 146px;
+  height: 146px;
+  font-size: 32px;
+}
+
+label {
+  font-size: 40px;
+}
