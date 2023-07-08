@@ -7,7 +7,7 @@ describe("Plus", () => {
   test("初期画面のPlusマークの数", () => {
     render(<App />);
     const plusMark = screen.getAllByText("+");
-    expect(plusMark.length).toBe(2);
+    expect(plusMark).toHaveLength(2);
   });
   test("クリックしたあとのPlusマークの数", async () => {
     render(<App />);
@@ -16,7 +16,7 @@ describe("Plus", () => {
     await waitFor(() => {
       user.click(buttonElement);
       const plusMark = screen.getAllByText("+");
-      expect(plusMark.length).toBe(1);
+      expect(plusMark).toHaveLength(1);
     });
   });
 });
@@ -32,5 +32,18 @@ describe("ボタンのテスト", () => {
     const buttonElement = screen.getByRole("button");
     await user.click(buttonElement);
     expect(buttonElement.textContent).toContain("Reset");
+  });
+});
+describe("計算", () => {
+  test("問題を取得し計算結果が一致するか", async () => {
+    render(<App />);
+    const user = userEvent.setup();
+    const q0 = screen.getByTestId("q0").textContent;
+    const q1 = screen.getByTestId("q1").textContent;
+    const ans = Number(q0) + Number(q1);
+    const buttonElement = screen.getByRole("button");
+    await user.click(buttonElement);
+    const renderAns = screen.getByTestId("answer").textContent;
+    expect(Number(renderAns)).toBe(ans);
   });
 });
