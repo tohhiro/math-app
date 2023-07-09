@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: "14" # 使用するNode.jsのバージョン
 
+      - name: Install TypeScript
+        run: npm install typescript
+
       - name: Install Dependencies
         run: npm ci # テストに必要な依存関係のインストール
 
