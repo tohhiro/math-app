@@ -1,12 +1,12 @@
 import React from "react";
-import "./styles.css";
+import classes from "./index.module.css";
 import { useState } from "react";
 
 type qqProps = {
   q: number;
 };
 
-export const Main = () => {
+export const Main: React.FC = () => {
   const [qq, setQuestion] = useState<qqProps[]>([
     { q: Math.floor(Math.random() * 9999) },
     { q: Math.floor(Math.random() * 9999) },
@@ -40,14 +40,10 @@ export const Main = () => {
 
   return (
     <main>
-      <div className="qContainer">
-        <p className="q0" data-testid="q0">
-          {qq[0].q}
-        </p>
+      <div className={classes.qContainer}>
+        <p data-testid="q0">{qq[0].q}</p>
         <p>+</p>
-        <p className="q1" data-testid="q1">
-          {qq[1].q}
-        </p>
+        <p data-testid="q1">{qq[1].q}</p>
       </div>
       <div>
         <button onClick={calResetBtn}>{btn}</button>
