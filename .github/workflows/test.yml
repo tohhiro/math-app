@@ -19,7 +19,7 @@ jobs:
           node-version: "14" # 使用するNode.jsのバージョン
 
       - name: Install Dependencies
-        run: npm install # テストに必要な依存関係のインストール
+        run: npm ci # テストに必要な依存関係のインストール
 
       - name: Run Tests
         run: npm test # Jestテストの実行
