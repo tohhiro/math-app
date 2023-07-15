@@ -38,20 +38,23 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@storybook/addon-essentials": "^7.0.26",
     "@storybook/addon-interactions": "^7.0.26",
     "@storybook/addon-links": "^7.0.26",
     "@storybook/blocks": "^7.0.26",
     "@storybook/preset-create-react-app": "^7.0.26",
-    "@storybook/react": "^7.0.26",
+    "@storybook/react": "^7.0.27",
+    "storybook": "^7.0.26",
     "@storybook/react-webpack5": "^7.0.26",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/webpack-env": "^1.18.1",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "eslint": "^7.32.0",
     "eslint-plugin-storybook": "^0.6.12",
     "prop-types": "^15.8.1",
-    "storybook": "^7.0.26",
+    "typescript": "^5.1.6",
     "webpack": "^5.88.1"
   }
 }
