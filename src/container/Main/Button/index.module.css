@@ -1,0 +1,8 @@
+.button {
+  width: 146px;
+  height: 146px;
+  font-size: 32px;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 10%;
+}

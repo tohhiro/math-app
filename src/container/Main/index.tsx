@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./index.module.css";
 import { useState } from "react";
+import { Button } from "./Button";
 
 export const Main: React.FC = () => {
   const [qq, setQuestion] = useState([
@@ -42,7 +43,7 @@ export const Main: React.FC = () => {
         <p data-testid="q1">{qq[1].q}</p>
       </div>
       <div>
-        <button onClick={calResetBtn}>{btn}</button>
+        <Button onClick={calResetBtn} label={btn} />
       </div>
       <div>
         <label>Answer</label>

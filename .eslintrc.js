@@ -14,6 +14,6 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
-    // ここにカスタムのルールを追加することもできます
+    "no-undef": "off",
   },
 };
