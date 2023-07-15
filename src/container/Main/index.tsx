@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./index.module.css";
 import { useState } from "react";
 
@@ -6,7 +5,7 @@ type qqProps = {
   q: number;
 };
 
-export const Main: React.FC = () => {
+export const Main = () => {
   const [qq, setQuestion] = useState<qqProps[]>([
     { q: Math.floor(Math.random() * 9999) },
     { q: Math.floor(Math.random() * 9999) },
