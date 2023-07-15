@@ -1,0 +1,12 @@
+.answerLabel {
+  font-size: 40px;
+  text-align: center;
+}
+
+.answerText {
+  margin-top: 10px;
+  font-size: 32px;
+  text-align: center;
+  font-weight: 600;
+  color: brown;
+}
