@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./index.module.css";
 import { useState } from "react";
+import { Question } from "./Question";
 import { Button } from "./Button";
 import { AnswerLabel } from "./AnswerLabel";
 
@@ -38,15 +39,11 @@ export const Main: React.FC = () => {
 
   return (
     <main>
-      <div className={classes.qContainer}>
-        <p data-testid="q0">{qq[0].q}</p>
-        <p>+</p>
-        <p data-testid="q1">{qq[1].q}</p>
-      </div>
-      <div>
+      <Question q0={qq[0].q} q1={qq[1].q} />
+      <div className={classes.container}>
         <Button onClick={calResetBtn} label={btn} />
       </div>
-      <div>
+      <div className={classes.container}>
         <AnswerLabel answer={answer} />
       </div>
     </main>
