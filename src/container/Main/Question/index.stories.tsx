@@ -6,7 +6,7 @@ export default {
   component: Question,
 };
 
-export const Default = (): JSX.Element => {
+export const Default: React.FC = (): JSX.Element => {
   const mockData = {
     q0: 123,
     q1: 456,
