@@ -1,11 +1,11 @@
 import React from "react";
-import { Header } from ".";
+import { Main } from ".";
 
 export default {
-  title: "header",
-  component: Header,
+  title: "Main",
+  component: Main,
 };
 
 export const Default: React.FC = (): JSX.Element => {
-  return <Header />;
+  return <Main />;
 };
