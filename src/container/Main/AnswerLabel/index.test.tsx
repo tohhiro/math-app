@@ -8,4 +8,9 @@ describe("AnswerLabel", () => {
     const answerLabel = screen.getByRole("label");
     expect(answerLabel).toHaveTextContent("Answer");
   });
+  test("Answerが123である", () => {
+    render(<AnswerLabel answer={123} />);
+    const answerLabel = screen.getByTestId("answer");
+    expect(answerLabel).toHaveTextContent("123");
+  });
 });
