@@ -1,0 +1,32 @@
+name: Run VRT
+
+on: push
+
+env:
+  REG_NOTIFY_CLIENT_ID: ${{ secrets.REG_NOTIFY_CLIENTID }}
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+
+jobs:
+  build:
+    runs-on: ubuntu-least
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/step-node@v3
+        with:
+          node-version: 16
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          asw-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Storybook
+        run: npm run storybook:build
+      - name: Run Storycap
+        run: npm run vrt:snapshot
+      - name: Run reg-suit
+        run: npm run vrt:run
