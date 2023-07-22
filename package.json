@@ -22,7 +22,7 @@
     "eject": "react-scripts eject",
     "sb": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "vrt:storycap": "storycap --serverCmd 'npx http-server storybook-static -p6006' http://localhost:6006",
+    "vrt:snapshot": "storycap --serverCmd 'npx http-server storybook-static -p6006' http://localhost:6006",
     "vrt:run": "reg-suit run"
   },
   "eslintConfig": {
