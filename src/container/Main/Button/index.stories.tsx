@@ -9,7 +9,16 @@ export default {
 export const Default: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
-    label: "test",
+    label: "+",
+  };
+
+  return <Button {...mockData} />;
+};
+
+export const Reset: React.FC = (): JSX.Element => {
+  const mockData = {
+    onClick: () => {},
+    label: "Reset",
   };
 
   return <Button {...mockData} />;
