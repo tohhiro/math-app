@@ -29,7 +29,7 @@ jobs:
         run: npm run storybook:build
       - name: Run Storycap
         run: npm run vrt:snapshot
-      - name: Upload Storycap screenshots to S3
-        run: npm run reg-publish-s3
+      - name: Run reg-suit compare
+        run: npm run vrt:compare
       - name: Run reg-suit
         run: npm run vrt:run
