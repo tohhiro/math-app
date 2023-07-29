@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Question } from "./Question";
 import { Button } from "./Button";
 import { AnswerLabel } from "./AnswerLabel";
-import { number } from "prop-types";
 
 const createQuestion = () => {
   const fourDigitNumber = Math.floor(Math.random() * 10000)
