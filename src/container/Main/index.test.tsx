@@ -33,6 +33,15 @@ describe("ボタンのテスト", () => {
     expect(buttonElement.textContent).toContain("Reset");
   });
 });
+describe("問題の生成", () => {
+  test("問題の数値が4桁を生成する", () => {
+    render(<Main />);
+    const q0 = screen.getByTestId("q0").textContent;
+    const q1 = screen.getByTestId("q1").textContent;
+    expect(q0).toHaveLength(4);
+    expect(q1).toHaveLength(4);
+  });
+});
 describe("計算", () => {
   test("問題を取得し計算結果が一致するか", async () => {
     render(<Main />);
@@ -43,6 +52,19 @@ describe("計算", () => {
     const buttonElement = screen.getByRole("button");
     await user.click(buttonElement);
     const renderAns = screen.getByTestId("answer").textContent;
+    expect(Number(renderAns)).toBe(ans);
+  });
+  test("問題を取得し、問題の桁数が4桁、且つ計算結果が一致するか", async () => {
+    render(<Main />);
+    const user = userEvent.setup();
+    const q0 = screen.getByTestId("q0").textContent;
+    const q1 = screen.getByTestId("q1").textContent;
+    const ans = Number(q0) + Number(q1);
+    const buttonElement = screen.getByRole("button");
+    await user.click(buttonElement);
+    const renderAns = screen.getByTestId("answer").textContent;
+    expect(q0).toHaveLength(4);
+    expect(q1).toHaveLength(4);
     expect(Number(renderAns)).toBe(ans);
   });
 });
