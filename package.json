@@ -23,7 +23,8 @@
     "sb": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "vrt:snapshot": "storycap --serverCmd 'npx http-server storybook-static -p6006' http://localhost:6006",
-    "vrt:run": "reg-suit run"
+    "vrt:run": "reg-suit run",
+    "reg-publish-s3": "reg-suit publish s3"
   },
   "eslintConfig": {
     "extends": [
