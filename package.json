@@ -9,7 +9,6 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "reg-keygen-git-hash-plugin": "^0.12.2",
-    "reg-notify-github-plugin": "^0.12.2",
     "reg-publish-s3-plugin": "^0.12.2",
     "reg-suit": "^0.12.2",
     "storycap": "^4.1.2",
@@ -61,6 +60,7 @@
     "eslint": "^7.32.0",
     "eslint-plugin-storybook": "^0.6.12",
     "prop-types": "^15.8.1",
+    "reg-notify-github-plugin": "^0.12.2",
     "storybook": "^7.0.26",
     "typescript": "^4.9.5",
     "webpack": "^5.88.1"
