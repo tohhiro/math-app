@@ -17,5 +17,5 @@
       "bucketName": "$AWS_BUCKET_NAME"
     }
   },
-  "sensitivity": 0.01
+  "sensitivity": 1
 }
