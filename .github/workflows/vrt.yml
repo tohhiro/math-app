@@ -29,5 +29,7 @@ jobs:
         run: npm run storybook:build
       - name: Run Storycap
         run: npm run vrt:snapshot
+      - name: Run reg-suit compare
+        run: npm run vrt:compare
       - name: Run reg-suit
         run: npm run vrt:run
