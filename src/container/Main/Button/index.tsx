@@ -9,7 +9,12 @@ type Props = {
 export const Button: React.FC<Props> = (props: Props) => {
   const { onClick, label } = props;
   return (
-    <button className={classes.button} onClick={onClick}>
+    <button
+      className={`${classes.button} ${
+        label === "+" ? classes.buttonColor_plus : classes.buttonColor_reset
+      }`}
+      onClick={onClick}
+    >
       {label}
     </button>
   );

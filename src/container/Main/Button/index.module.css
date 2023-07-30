@@ -6,3 +6,13 @@
   cursor: pointer;
   border-radius: 10%;
 }
+
+.buttonColor_plus {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+.buttonColor_reset {
+  background-color: #0000ff;
+  color: #ffffff;
+}
