@@ -1,3 +1,8 @@
+:root {
+  --buttonPlus: #ff0000;
+  --buttonReset: #0000ff;
+}
+
 .button {
   width: 146px;
   height: 146px;
@@ -5,14 +10,13 @@
   user-select: none;
   cursor: pointer;
   border-radius: 10%;
+  color: #ffffff;
 }
 
 .buttonColor_plus {
-  background-color: #ff0000;
-  color: #ffffff;
+  background-color: var(--buttonPlus);
 }
 
 .buttonColor_reset {
-  background-color: #0000ff;
-  color: #ffffff;
+  background-color: var(--buttonReset);
 }
