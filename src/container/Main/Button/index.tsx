@@ -11,7 +11,11 @@ export const Button: React.FC<Props> = (props: Props) => {
   return (
     <button
       className={`${classes.button} ${
-        label === "+" ? classes.buttonColor_plus : classes.buttonColor_reset
+        label === "Start"
+          ? classes.buttonColor_start
+          : label === "+"
+          ? classes.buttonColor_plus
+          : classes.buttonColor_reset
       }`}
       onClick={onClick}
     >

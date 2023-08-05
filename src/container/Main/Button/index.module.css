@@ -1,4 +1,5 @@
 :root {
+  --buttonStart: #0a0a0a;
   --buttonPlus: #ea0404;
   --buttonReset: #29295f;
 }
@@ -11,6 +12,11 @@
   cursor: pointer;
   border-radius: 10%;
   color: #ffffff;
+}
+
+.buttonColor_start {
+  color: #ffffff;
+  background-color: var(--buttonStart);
 }
 
 .buttonColor_plus {
