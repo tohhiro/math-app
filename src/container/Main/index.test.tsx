@@ -3,10 +3,10 @@ import userEvent from "@testing-library/user-event";
 import { Main } from ".";
 
 describe("Plus", () => {
-  test("初期画面のPlusマークの数", () => {
+  test("初期画面の「＋」の文字列の数", () => {
     render(<Main />);
     const plusMark = screen.getAllByText("+");
-    expect(plusMark).toHaveLength(2);
+    expect(plusMark).toHaveLength(1);
   });
   test("クリックしたあとのPlusマークの数", async () => {
     render(<Main />);
@@ -23,12 +23,20 @@ describe("ボタンのテスト", () => {
   test("初期のボタンの表示", () => {
     render(<Main />);
     const buttonElement = screen.getByRole("button");
-    expect(buttonElement.textContent).toContain("+");
+    expect(buttonElement.textContent).toContain("Start");
   });
-  test("クリックしたあとのボタンの表示", async () => {
+  test("最初にクリックしたあとのボタンの表示", async () => {
     render(<Main />);
     const user = userEvent.setup();
     const buttonElement = screen.getByRole("button");
+    await user.click(buttonElement);
+    expect(buttonElement.textContent).toContain("+");
+  });
+  test("2回クリックしたあとのボタンの表示", async () => {
+    render(<Main />);
+    const user = userEvent.setup();
+    const buttonElement = screen.getByRole("button");
+    await user.click(buttonElement);
     await user.click(buttonElement);
     expect(buttonElement.textContent).toContain("Reset");
   });
@@ -46,10 +54,11 @@ describe("計算", () => {
   test("問題を取得し計算結果が一致するか", async () => {
     render(<Main />);
     const user = userEvent.setup();
+    const buttonElement = screen.getByRole("button");
+    await user.click(buttonElement);
     const q0 = screen.getByTestId("q0").textContent;
     const q1 = screen.getByTestId("q1").textContent;
     const ans = Number(q0) + Number(q1);
-    const buttonElement = screen.getByRole("button");
     await user.click(buttonElement);
     const renderAns = screen.getByTestId("answer").textContent;
     expect(Number(renderAns)).toBe(ans);
@@ -57,10 +66,11 @@ describe("計算", () => {
   test("問題を取得し、問題の桁数が4桁、且つ計算結果が一致するか", async () => {
     render(<Main />);
     const user = userEvent.setup();
+    const buttonElement = screen.getByRole("button");
+    await user.click(buttonElement);
     const q0 = screen.getByTestId("q0").textContent;
     const q1 = screen.getByTestId("q1").textContent;
     const ans = Number(q0) + Number(q1);
-    const buttonElement = screen.getByRole("button");
     await user.click(buttonElement);
     const renderAns = screen.getByTestId("answer").textContent;
     expect(q0).toHaveLength(4);

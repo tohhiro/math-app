@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Question } from "./Question";
 import { Button } from "./Button";
 import { AnswerLabel } from "./AnswerLabel";
+import { Timer } from "./Timer";
 
 const createQuestion = () => {
   const fourDigitNumber = Math.floor(Math.random() * 10000)
@@ -19,7 +20,7 @@ export const Main: React.FC = () => {
   ]);
 
   const [answer, setAnswer] = useState<number | null>(null);
-  const [btn, setBtn] = useState("+");
+  const [btn, setBtn] = useState("Start");
 
   const calResetBtn = () => {
     if (btn === "+") {
@@ -41,6 +42,8 @@ export const Main: React.FC = () => {
     setAnswer(null);
   };
 
+  const durationInMs = 1000 * 60 * 10; // 10分
+
   return (
     <main>
       <Question q0={qq[0].q} q1={qq[1].q} />
@@ -50,6 +53,7 @@ export const Main: React.FC = () => {
       <div className={classes.container}>
         <AnswerLabel answer={answer} />
       </div>
+      <Timer durationInMs={durationInMs} label={btn} />
     </main>
   );
 };

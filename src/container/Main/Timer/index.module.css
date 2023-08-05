@@ -1,0 +1,16 @@
+.timer {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.number {
+  display: inline-block;
+  width: 30px;
+  font-size: 24px;
+}
+
+.colon {
+  display: inline-block;
+  width: 5px;
+  font-size: 24px;
+}
