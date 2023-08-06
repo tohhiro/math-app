@@ -3,11 +3,11 @@ import classes from "./index.module.css";
 
 type Props = {
   durationInMs: number;
-  label: string;
+  isStart: boolean;
 };
 
 export const Timer: React.FC<Props> = (props: Props) => {
-  const { durationInMs, label } = props;
+  const { durationInMs, isStart } = props;
   const [remainingTime, setRemainingTime] = useState(durationInMs);
 
   useEffect(() => {
@@ -28,12 +28,12 @@ export const Timer: React.FC<Props> = (props: Props) => {
     let startTime = Date.now();
     let endTime = startTime + durationInMs;
 
-    if (label !== "Start") {
+    if (isStart) {
       intervalId = setInterval(updateTimer, 10); // 1秒ごとにタイマーを更新
     }
 
     return () => clearInterval(intervalId); // クリーンアップ時にタイマーの更新を停止
-  }, [durationInMs, label]);
+  }, [durationInMs, isStart]);
 
   const minutes = Math.floor(remainingTime / (60 * 1000));
   const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
