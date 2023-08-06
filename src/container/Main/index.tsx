@@ -46,6 +46,7 @@ export const Main: React.FC = () => {
 
   return (
     <main>
+      <Timer durationInMs={durationInMs} label={btn} />
       <Question q0={qq[0].q} q1={qq[1].q} />
       <div className={classes.container}>
         <Button onClick={calResetBtn} label={btn} />
@@ -53,7 +54,6 @@ export const Main: React.FC = () => {
       <div className={classes.container}>
         <AnswerLabel answer={answer} />
       </div>
-      <Timer durationInMs={durationInMs} label={btn} />
     </main>
   );
 };
