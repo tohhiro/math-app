@@ -1,8 +1,14 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { Timer } from ".";
 
 describe("Timer", () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+  afterEach(() => {
+    jest.useRealTimers();
+  });
   test("1000*10*60を渡すと10:00:000が表示される", () => {
     const mockValues = {
       durationInMs: 1000 * 10 * 60,
@@ -11,5 +17,17 @@ describe("Timer", () => {
     render(<Timer {...mockValues} />);
     const timerLabel = screen.getByTestId("timer");
     expect(timerLabel).toHaveTextContent("10:00:000");
+  });
+  test("1000*10*60を渡たし、1秒待つと9秒台で表示される", async () => {
+    const mockValues = {
+      durationInMs: 1000 * 10 * 60,
+      isStart: true,
+    };
+    render(<Timer {...mockValues} />);
+    jest.advanceTimersByTime(1000);
+    await waitFor(() => {
+      const timerLabel = screen.getByTestId("timer");
+      expect(timerLabel).toHaveTextContent(/^09:/);
+    });
   });
 });
