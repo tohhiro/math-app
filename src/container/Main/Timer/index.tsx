@@ -4,10 +4,11 @@ import classes from "./index.module.css";
 type Props = {
   durationInMs: number;
   isStart: boolean;
+  onOverTime: () => void;
 };
 
 export const Timer: React.FC<Props> = (props: Props) => {
-  const { durationInMs, isStart } = props;
+  const { durationInMs, isStart, onOverTime } = props;
   const [remainingTime, setRemainingTime] = useState(durationInMs);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export const Timer: React.FC<Props> = (props: Props) => {
       if (timeLeft <= 0) {
         clearInterval(intervalId);
         setRemainingTime(0);
+        onOverTime();
       } else {
         setRemainingTime(timeLeft);
       }

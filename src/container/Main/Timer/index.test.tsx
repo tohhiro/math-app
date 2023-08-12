@@ -13,6 +13,7 @@ describe("Timer", () => {
     const mockValues = {
       durationInMs: 1000 * 10 * 60,
       isStart: false,
+      onOverTime: jest.fn(),
     };
     render(<Timer {...mockValues} />);
     const timerLabel = screen.getByTestId("timer");
@@ -22,6 +23,7 @@ describe("Timer", () => {
     const mockValues = {
       durationInMs: 1000 * 10 * 60,
       isStart: true,
+      onOverTime: jest.fn(),
     };
     render(<Timer {...mockValues} />);
     jest.advanceTimersByTime(1000);

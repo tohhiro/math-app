@@ -22,6 +22,7 @@ export const Main: React.FC = () => {
   const [answer, setAnswer] = useState<number | null>(null);
   const [btn, setBtn] = useState("Start");
   const [isStart, setIsStart] = useState(false);
+  const [isButton, setIsButton] = useState(false);
 
   const calResetBtn = () => {
     if (btn === "Start") {
@@ -48,14 +49,22 @@ export const Main: React.FC = () => {
     setAnswer(null);
   };
 
-  const durationInMs = 1000 * 60 * 10; // 10分
+  const onOverTime = () => {
+    setIsButton(true);
+  };
+
+  const durationInMs = 1000 * 60 * 1; // 10分
 
   return (
     <main>
-      <Timer durationInMs={durationInMs} isStart={isStart} />
+      <Timer
+        durationInMs={durationInMs}
+        isStart={isStart}
+        onOverTime={onOverTime}
+      />
       <Question q0={qq[0].q} q1={qq[1].q} />
       <div className={classes.container}>
-        <Button onClick={calResetBtn} label={btn} />
+        <Button onClick={calResetBtn} label={btn} disabled={isButton} />
       </div>
       <div className={classes.container}>
         <AnswerLabel answer={answer} />
