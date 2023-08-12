@@ -53,7 +53,7 @@ export const Main: React.FC = () => {
     setIsButton(true);
   };
 
-  const durationInMs = 1000 * 60 * 1; // 10分
+  const durationInMs = 1000 * 60 * 10; // 10分
 
   return (
     <main>
