@@ -26,3 +26,9 @@
 .buttonColor_reset {
   background-color: var(--buttonReset);
 }
+
+.disabled {
+  color: #d0d0d0;
+  background-color: #909090;
+  cursor: not-allowed;
+}

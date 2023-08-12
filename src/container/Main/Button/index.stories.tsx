@@ -10,6 +10,7 @@ export const Default: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
     label: "+",
+    disabled: false,
   };
 
   return <Button {...mockData} />;
@@ -19,6 +20,17 @@ export const Reset: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
     label: "Reset",
+    disabled: false,
+  };
+
+  return <Button {...mockData} />;
+};
+
+export const Disabled: React.FC = (): JSX.Element => {
+  const mockData = {
+    onClick: () => {},
+    label: "Reset",
+    disabled: true,
   };
 
   return <Button {...mockData} />;

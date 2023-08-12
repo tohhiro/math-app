@@ -4,10 +4,11 @@ import classes from "./index.module.css";
 type Props = {
   onClick: () => void;
   label: string;
+  disabled: boolean;
 };
 
 export const Button: React.FC<Props> = (props: Props) => {
-  const { onClick, label } = props;
+  const { onClick, label, disabled } = props;
   return (
     <button
       className={`${classes.button} ${
@@ -16,8 +17,9 @@ export const Button: React.FC<Props> = (props: Props) => {
           : label === "+"
           ? classes.buttonColor_plus
           : classes.buttonColor_reset
-      }`}
+      } ${disabled ? classes.disabled : ""}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {label}
     </button>

@@ -5,13 +5,13 @@ import { Button } from ".";
 describe("Plus", () => {
   test("ボタンの表示", () => {
     const onClick = jest.fn();
-    render(<Button onClick={onClick} label="+" />);
+    render(<Button onClick={onClick} label="+" disabled={false} />);
     const plusMark = screen.getByRole("button");
     expect(plusMark).toHaveTextContent("+");
   });
   test("ボタンの表示", async () => {
     const onClick = jest.fn();
-    render(<Button onClick={onClick} label="Reset" />);
+    render(<Button onClick={onClick} label="Reset" disabled={false} />);
     const plusMark = screen.getByRole("button");
     expect(plusMark).toHaveTextContent("Reset");
   });
