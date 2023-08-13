@@ -1,5 +1,6 @@
 import React from "react";
 import { Question } from ".";
+import { createQuestion } from "../index";
 
 export default {
   title: "Main/Question",
@@ -8,8 +9,8 @@ export default {
 
 export const Default: React.FC = (): JSX.Element => {
   const mockData = {
-    q0: Math.floor(Math.random() * 10000),
-    q1: Math.floor(Math.random() * 10000),
+    q0: createQuestion(),
+    q1: createQuestion(),
   };
   return <Question {...mockData} />;
 };

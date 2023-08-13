@@ -5,8 +5,9 @@ import { Question } from "./Question";
 import { Button } from "./Button";
 import { AnswerLabel } from "./AnswerLabel";
 import { Timer } from "./Timer";
+import { QuestionProps } from "./Question";
 
-const createQuestion = () => {
+export const createQuestion = () => {
   const fourDigitNumber = Math.floor(Math.random() * 10000)
     .toString()
     .padEnd(4, "0");
@@ -14,10 +15,7 @@ const createQuestion = () => {
 };
 
 export const Main: React.FC = () => {
-  const [qq, setQuestion] = useState([
-    { q: createQuestion() },
-    { q: createQuestion() },
-  ]);
+  const [qq, setQuestion] = useState<QuestionProps[]>(["----", "----"]);
 
   const [answer, setAnswer] = useState<number | null>(null);
   const [btn, setBtn] = useState("Start");
@@ -28,6 +26,7 @@ export const Main: React.FC = () => {
     if (btn === "Start") {
       setBtn("+");
       setIsStart(true);
+      resetQuestion();
     }
     if (btn === "+") {
       plusAnswer();
@@ -40,12 +39,13 @@ export const Main: React.FC = () => {
   };
 
   const plusAnswer = () => {
-    const getAnswer = qq[0].q + qq[1].q;
+    if (typeof qq[0] !== "number" || typeof qq[1] !== "number") return;
+    const getAnswer = qq[0] + qq[1];
     setAnswer(getAnswer);
   };
 
   const resetQuestion = () => {
-    setQuestion([{ q: createQuestion() }, { q: createQuestion() }]);
+    setQuestion([createQuestion(), createQuestion()]);
     setAnswer(null);
   };
 
@@ -53,16 +53,10 @@ export const Main: React.FC = () => {
     setIsButton(true);
   };
 
-  const durationInMs = 1000 * 60 * 10; // 10分
-
   return (
     <main>
-      <Timer
-        durationInMs={durationInMs}
-        isStart={isStart}
-        onOverTime={onOverTime}
-      />
-      <Question q0={qq[0].q} q1={qq[1].q} />
+      <Timer isStart={isStart} onOverTime={onOverTime} />
+      <Question q0={qq[0]} q1={qq[1]} />
       <div className={classes.container}>
         <Button onClick={calResetBtn} label={btn} disabled={isButton} />
       </div>

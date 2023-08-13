@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import classes from "./index.module.css";
 
 type Props = {
-  durationInMs: number;
   isStart: boolean;
   onOverTime: () => void;
 };
 
 export const Timer: React.FC<Props> = (props: Props) => {
-  const { durationInMs, isStart, onOverTime } = props;
+  const { isStart, onOverTime } = props;
+
+  const durationInMs = 1000 * 60 * 10; // 10分;
   const [remainingTime, setRemainingTime] = useState(durationInMs);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export const Timer: React.FC<Props> = (props: Props) => {
   const milliseconds = remainingTime % 1000;
 
   return (
-    <div className={classes.timer} data-testid="timer">
+    <div className={classes.container} data-testid="timer">
       <span className={classes.number}>{String(minutes).padStart(2, "0")}</span>
       <span className={classes.colon}>:</span>
       <span className={classes.number}>{String(seconds).padStart(2, "0")}</span>
