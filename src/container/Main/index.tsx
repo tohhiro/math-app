@@ -21,6 +21,7 @@ export const Main: React.FC = () => {
   const [btn, setBtn] = useState("Start");
   const [isStart, setIsStart] = useState(false);
   const [isButton, setIsButton] = useState(false);
+  const [count, setCount] = useState(0);
 
   const calResetBtn = () => {
     if (btn === "Start") {
@@ -31,6 +32,7 @@ export const Main: React.FC = () => {
     if (btn === "+") {
       plusAnswer();
       setBtn("Reset");
+      setCount((prevCount) => prevCount + 1);
     }
     if (btn === "Reset") {
       resetQuestion();
@@ -61,7 +63,7 @@ export const Main: React.FC = () => {
         <Button onClick={calResetBtn} label={btn} disabled={isButton} />
       </div>
       <div className={classes.container}>
-        <AnswerLabel answer={answer} />
+        <AnswerLabel answer={answer} count={count} />
       </div>
     </main>
   );
