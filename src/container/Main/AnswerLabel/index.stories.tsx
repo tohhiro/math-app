@@ -9,6 +9,7 @@ export default {
 export const Default: React.FC = (): JSX.Element => {
   const mockData = {
     answer: 123,
+    count: 3,
   };
 
   return <AnswerLabel {...mockData} />;

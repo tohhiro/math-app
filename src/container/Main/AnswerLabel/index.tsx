@@ -3,13 +3,16 @@ import classes from "./index.module.css";
 
 type Props = {
   answer: number;
+  count: number;
 };
 
 export const AnswerLabel: React.FC<Props> = (props: Props) => {
-  const { answer } = props;
+  const { answer, count } = props;
   return (
-    <div className={classes.answerLabel}>
-      <label role="label">Answer</label>
+    <div className={classes.container}>
+      <label role="label">
+        Answer<span>（{count}）</span>
+      </label>
       <p className={classes.answerText} data-testid="answer">
         {answer}
       </p>

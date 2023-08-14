@@ -78,3 +78,23 @@ describe("計算", () => {
     expect(Number(renderAns)).toBe(ans);
   });
 });
+describe("Answerの（）のカウント", () => {
+  test("初期表示は、Answer（0）と表示される", async () => {
+    render(<Main />);
+
+    const answerLabel = screen.getByRole("label");
+    console.log("answer0", answerLabel.textContent);
+    expect(answerLabel.textContent).toBe("Answer（0）");
+  });
+  test("ボタンが+の時に2回クリックしたら、Answer（2）と表示される", async () => {
+    render(<Main />);
+    const user = userEvent.setup();
+    const buttonElement = screen.getByRole("button");
+    await user.click(buttonElement); // Start
+    await user.click(buttonElement); // +
+    await user.click(buttonElement); // Reset
+    await user.click(buttonElement); // +
+    const answerLabel = screen.getByRole("label");
+    expect(answerLabel.textContent).toBe("Answer（2）");
+  });
+});
