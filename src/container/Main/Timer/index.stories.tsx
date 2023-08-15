@@ -7,6 +7,10 @@ export default {
 };
 
 export const Default: React.FC = (): JSX.Element => {
-  const isStart = false;
-  return <Timer isStart={isStart} onOverTime={() => {}} />;
+  const mock = {
+    isStart: false,
+    onOverTime: () => {},
+  };
+
+  return <Timer {...mock} />;
 };

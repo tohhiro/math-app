@@ -6,6 +6,7 @@ import { Button } from "./Button";
 import { AnswerLabel } from "./AnswerLabel";
 import { Timer } from "./Timer";
 import { QuestionProps } from "./Question";
+import { ResetButton } from "./ResetButton";
 
 export const createQuestion = () => {
   const fourDigitNumber = Math.floor(Math.random() * 10000)
@@ -55,6 +56,14 @@ export const Main: React.FC = () => {
     setIsButton(true);
   };
 
+  const onHandleReset = () => {
+    setBtn("Start");
+    setIsStart(false);
+    setIsButton(false);
+    setCount(0);
+    setQuestion(["----", "----"]);
+  };
+
   return (
     <main>
       <Timer isStart={isStart} onOverTime={onOverTime} />
@@ -64,6 +73,9 @@ export const Main: React.FC = () => {
       </div>
       <div className={classes.container}>
         <AnswerLabel answer={answer} count={count} />
+      </div>
+      <div>
+        <ResetButton onHandleReset={onHandleReset} />
       </div>
     </main>
   );

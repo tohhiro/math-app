@@ -11,7 +11,7 @@ describe("Plus", () => {
   test("クリックしたあとのPlusマークの数", async () => {
     render(<Main />);
     const user = userEvent.setup();
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getAllByRole("button")[0];
     await waitFor(() => {
       user.click(buttonElement);
       const plusMark = screen.getAllByText("+");
@@ -22,20 +22,20 @@ describe("Plus", () => {
 describe("ボタンのテスト", () => {
   test("初期のボタンの表示", () => {
     render(<Main />);
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getAllByRole("button")[0];
     expect(buttonElement.textContent).toContain("Start");
   });
   test("最初にクリックしたあとのボタンの表示", async () => {
     render(<Main />);
     const user = userEvent.setup();
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getAllByRole("button")[0];
     await user.click(buttonElement);
     expect(buttonElement.textContent).toContain("+");
   });
   test("2回クリックしたあとのボタンの表示", async () => {
     render(<Main />);
     const user = userEvent.setup();
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getAllByRole("button")[0];
     await user.click(buttonElement);
     await user.click(buttonElement);
     expect(buttonElement.textContent).toContain("Reset");
@@ -54,7 +54,7 @@ describe("計算", () => {
   test("問題を取得し計算結果が一致するか", async () => {
     render(<Main />);
     const user = userEvent.setup();
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getAllByRole("button")[0];
     await user.click(buttonElement);
     const q0 = screen.getByTestId("q0").textContent;
     const q1 = screen.getByTestId("q1").textContent;
@@ -66,7 +66,7 @@ describe("計算", () => {
   test("問題を取得し、問題の桁数が4桁、且つ計算結果が一致するか", async () => {
     render(<Main />);
     const user = userEvent.setup();
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getAllByRole("button")[0];
     await user.click(buttonElement);
     const q0 = screen.getByTestId("q0").textContent;
     const q1 = screen.getByTestId("q1").textContent;
@@ -89,7 +89,7 @@ describe("Answerの（）のカウント", () => {
   test("ボタンが+の時に2回クリックしたら、Answer（2）と表示される", async () => {
     render(<Main />);
     const user = userEvent.setup();
-    const buttonElement = screen.getByRole("button");
+    const buttonElement = screen.getAllByRole("button")[0];
     await user.click(buttonElement); // Start
     await user.click(buttonElement); // +
     await user.click(buttonElement); // Reset
