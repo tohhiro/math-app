@@ -10,6 +10,7 @@ export const Timer: React.FC<Props> = (props: Props) => {
   const { isStart, onOverTime } = props;
 
   const durationInMs = 1000 * 60 * 10; // 10分;
+
   const [remainingTime, setRemainingTime] = useState(durationInMs);
 
   useEffect(() => {
@@ -33,6 +34,8 @@ export const Timer: React.FC<Props> = (props: Props) => {
 
     if (isStart) {
       intervalId = setInterval(updateTimer, 10); // 1秒ごとにタイマーを更新
+    } else {
+      setRemainingTime(durationInMs);
     }
 
     return () => clearInterval(intervalId); // クリーンアップ時にタイマーの更新を停止
