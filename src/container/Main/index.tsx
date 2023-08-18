@@ -75,7 +75,7 @@ export const Main: React.FC = () => {
         <AnswerLabel answer={answer} count={count} />
       </div>
       <div>
-        <ResetButton onHandleReset={onHandleReset} />
+        <ResetButton onClick={onHandleReset} />
       </div>
     </main>
   );
