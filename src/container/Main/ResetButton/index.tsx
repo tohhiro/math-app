@@ -1,10 +1,15 @@
 import React from "react";
+import classes from "./index.module.css";
 
 type Props = {
-  onHandleReset: () => void;
+  onClick: () => void;
 };
 
 export const ResetButton: React.FC<Props> = (props: Props) => {
-  const { onHandleReset } = props;
-  return <button onClick={onHandleReset}>リセット</button>;
+  const { onClick } = props;
+  return (
+    <button className={classes.button} onClick={onClick}>
+      リセット
+    </button>
+  );
 };
