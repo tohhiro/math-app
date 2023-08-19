@@ -8,6 +8,8 @@ import { Timer } from "./Timer";
 import { QuestionProps } from "./Question";
 import { ResetButton } from "./ResetButton";
 
+type ButtonLabelType = "Start" | "+" | "Reset";
+
 export const createQuestion = () => {
   const fourDigitNumber = Math.floor(Math.random() * 10000)
     .toString()
@@ -16,10 +18,15 @@ export const createQuestion = () => {
 };
 
 export const Main: React.FC = () => {
-  const [qq, setQuestion] = useState<QuestionProps[]>(["----", "----"]);
-
+  const [question, setQuestion] = useState<{
+    questionLeft: QuestionProps;
+    questionRight: QuestionProps;
+  }>({
+    questionLeft: "----",
+    questionRight: "----",
+  });
   const [answer, setAnswer] = useState<number | null>(null);
-  const [btn, setBtn] = useState("Start");
+  const [btn, setBtn] = useState<ButtonLabelType>("Start");
   const [isStart, setIsStart] = useState(false);
   const [isButton, setIsButton] = useState(false);
   const [count, setCount] = useState(0);
@@ -42,13 +49,20 @@ export const Main: React.FC = () => {
   };
 
   const plusAnswer = () => {
-    if (typeof qq[0] !== "number" || typeof qq[1] !== "number") return;
-    const getAnswer = qq[0] + qq[1];
+    if (
+      typeof question.questionLeft !== "number" ||
+      typeof question.questionRight !== "number"
+    )
+      return;
+    const getAnswer = question.questionLeft + question.questionRight;
     setAnswer(getAnswer);
   };
 
   const resetQuestion = () => {
-    setQuestion([createQuestion(), createQuestion()]);
+    setQuestion({
+      questionLeft: createQuestion(),
+      questionRight: createQuestion(),
+    });
     setAnswer(null);
   };
 
@@ -61,13 +75,16 @@ export const Main: React.FC = () => {
     setIsStart(false);
     setIsButton(false);
     setCount(0);
-    setQuestion(["----", "----"]);
+    setQuestion({ questionLeft: "----", questionRight: "----" });
   };
 
   return (
     <main>
       <Timer isStart={isStart} onOverTime={onOverTime} />
-      <Question q0={qq[0]} q1={qq[1]} />
+      <Question
+        questionLeft={question.questionLeft}
+        questionRight={question.questionRight}
+      />
       <div className={classes.container}>
         <Button onClick={calResetBtn} label={btn} disabled={isButton} />
       </div>

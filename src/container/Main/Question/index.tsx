@@ -4,18 +4,18 @@ import classes from "./index.module.css";
 export type QuestionProps = "----" | number;
 
 type QuestionsProps = {
-  q0: QuestionProps;
-  q1: QuestionProps;
+  questionLeft: QuestionProps;
+  questionRight: QuestionProps;
 };
 
 export const Question: React.FC<QuestionsProps> = (props: QuestionsProps) => {
-  const { q0, q1 } = props;
+  const { questionLeft, questionRight } = props;
 
   return (
     <div className={classes.container}>
-      <p data-testid="q0">{q0}</p>
+      <p data-testid="questionLeft">{questionLeft}</p>
       <p>+</p>
-      <p data-testid="q1">{q1}</p>
+      <p data-testid="questionRight">{questionRight}</p>
     </div>
   );
 };

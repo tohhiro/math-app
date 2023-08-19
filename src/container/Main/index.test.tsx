@@ -44,10 +44,10 @@ describe("ボタンのテスト", () => {
 describe("問題の生成", () => {
   test("問題の数値が4桁を生成する", () => {
     render(<Main />);
-    const q0 = screen.getByTestId("q0").textContent;
-    const q1 = screen.getByTestId("q1").textContent;
-    expect(q0).toHaveLength(4);
-    expect(q1).toHaveLength(4);
+    const questionLeft = screen.getByTestId("questionLeft").textContent;
+    const questionRight = screen.getByTestId("questionRight").textContent;
+    expect(questionLeft).toHaveLength(4);
+    expect(questionRight).toHaveLength(4);
   });
 });
 describe("計算", () => {
@@ -56,9 +56,9 @@ describe("計算", () => {
     const user = userEvent.setup();
     const buttonElement = screen.getAllByRole("button")[0];
     await user.click(buttonElement);
-    const q0 = screen.getByTestId("q0").textContent;
-    const q1 = screen.getByTestId("q1").textContent;
-    const ans = Number(q0) + Number(q1);
+    const questionLeft = screen.getByTestId("questionLeft").textContent;
+    const questionRight = screen.getByTestId("questionRight").textContent;
+    const ans = Number(questionLeft) + Number(questionRight);
     await user.click(buttonElement);
     const renderAns = screen.getByTestId("answer").textContent;
     expect(Number(renderAns)).toBe(ans);
@@ -68,22 +68,20 @@ describe("計算", () => {
     const user = userEvent.setup();
     const buttonElement = screen.getAllByRole("button")[0];
     await user.click(buttonElement);
-    const q0 = screen.getByTestId("q0").textContent;
-    const q1 = screen.getByTestId("q1").textContent;
-    const ans = Number(q0) + Number(q1);
+    const questionLeft = screen.getByTestId("questionLeft").textContent;
+    const questionRight = screen.getByTestId("questionRight").textContent;
+    const ans = Number(questionLeft) + Number(questionRight);
     await user.click(buttonElement);
     const renderAns = screen.getByTestId("answer").textContent;
-    expect(q0).toHaveLength(4);
-    expect(q1).toHaveLength(4);
+    expect(questionLeft).toHaveLength(4);
+    expect(questionRight).toHaveLength(4);
     expect(Number(renderAns)).toBe(ans);
   });
 });
 describe("Answerの（）のカウント", () => {
   test("初期表示は、Answer（0）と表示される", async () => {
     render(<Main />);
-
     const answerLabel = screen.getByRole("label");
-    console.log("answer0", answerLabel.textContent);
     expect(answerLabel.textContent).toBe("Answer（0）");
   });
   test("ボタンが+の時に2回クリックしたら、Answer（2）と表示される", async () => {
