@@ -9,8 +9,8 @@ export default {
 
 export const Default: React.FC = (): JSX.Element => {
   const mockData = {
-    q0: createQuestion(),
-    q1: createQuestion(),
+    questionLeft: createQuestion(),
+    questionRight: createQuestion(),
   };
   return <Question {...mockData} />;
 };
