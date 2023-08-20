@@ -27,14 +27,14 @@ export const Main: React.FC = () => {
   });
   const [answer, setAnswer] = useState<number | null>(null);
   const [btn, setBtn] = useState<ButtonLabelType>("Start");
-  const [isStart, setIsStart] = useState(false);
-  const [isButton, setIsButton] = useState(false);
+  const [isStarting, setIsStarting] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [count, setCount] = useState(0);
 
   const calResetBtn = () => {
     if (btn === "Start") {
       setBtn("+");
-      setIsStart(true);
+      setIsStarting(true);
       resetQuestion();
     }
     if (btn === "+") {
@@ -67,26 +67,26 @@ export const Main: React.FC = () => {
   };
 
   const onOverTime = () => {
-    setIsButton(true);
+    setIsDisabled(true);
   };
 
   const onHandleReset = () => {
     setBtn("Start");
-    setIsStart(false);
-    setIsButton(false);
+    setIsStarting(false);
+    setIsDisabled(false);
     setCount(0);
     setQuestion({ questionLeft: "----", questionRight: "----" });
   };
 
   return (
     <main>
-      <Timer isStart={isStart} onOverTime={onOverTime} />
+      <Timer isStarting={isStarting} onOverTime={onOverTime} />
       <Question
         questionLeft={question.questionLeft}
         questionRight={question.questionRight}
       />
       <div className={classes.container}>
-        <Button onClick={calResetBtn} label={btn} disabled={isButton} />
+        <Button onClick={calResetBtn} label={btn} disabled={isDisabled} />
       </div>
       <div className={classes.container}>
         <AnswerLabel answer={answer} count={count} />

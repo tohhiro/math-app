@@ -12,7 +12,7 @@ describe("Timer", () => {
   test("1000*10*60を渡すと10:00:000が表示される", () => {
     const mockValues = {
       durationInMs: 1000 * 10 * 60,
-      isStart: false,
+      isStarting: false,
       onOverTime: jest.fn(),
     };
     render(<Timer {...mockValues} />);
@@ -22,7 +22,7 @@ describe("Timer", () => {
   test("1000*10*60を渡たし、1秒待つと9秒台で表示される", async () => {
     const mockValues = {
       durationInMs: 1000 * 10 * 60,
-      isStart: true,
+      isStarting: true,
       onOverTime: jest.fn(),
     };
     render(<Timer {...mockValues} />);

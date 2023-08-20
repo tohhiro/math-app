@@ -8,7 +8,7 @@ export default {
 
 export const Default: React.FC = (): JSX.Element => {
   const mock = {
-    isStart: false,
+    isStarting: false,
     onOverTime: () => {},
   };
 

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import classes from "./index.module.css";
 
 type Props = {
-  isStart: boolean;
+  isStarting: boolean;
   onOverTime: () => void;
 };
 
 export const Timer: React.FC<Props> = (props: Props) => {
-  const { isStart, onOverTime } = props;
+  const { isStarting, onOverTime } = props;
 
   const durationInMs = 1000 * 60 * 10; // 10分;
 
@@ -32,14 +32,14 @@ export const Timer: React.FC<Props> = (props: Props) => {
     let startTime = Date.now();
     let endTime = startTime + durationInMs;
 
-    if (isStart) {
+    if (isStarting) {
       intervalId = setInterval(updateTimer, 10); // 1秒ごとにタイマーを更新
     } else {
       setRemainingTime(durationInMs);
     }
 
     return () => clearInterval(intervalId); // クリーンアップ時にタイマーの更新を停止
-  }, [durationInMs, isStart]);
+  }, [durationInMs, isStarting]);
 
   const minutes = Math.floor(remainingTime / (60 * 1000));
   const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
