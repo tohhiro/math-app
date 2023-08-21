@@ -20,6 +20,5 @@
     "reg-publish-s3-plugin": {
       "bucketName": "$AWS_BUCKET_NAME"
     }
-  },
-  "sensitivity": 1
+  }
 }
