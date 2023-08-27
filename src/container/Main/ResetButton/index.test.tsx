@@ -9,4 +9,10 @@ describe("ResetButton", () => {
     const resetLabel = screen.getByRole("button");
     expect(resetLabel).toHaveTextContent("リセット");
   });
+  test("ボタンがクリックできる", () => {
+    const onClick = jest.fn();
+    render(<ResetButton onClick={onClick} />);
+    const resetLabel = screen.getByRole("button");
+    expect(resetLabel).toBeEnabled();
+  });
 });

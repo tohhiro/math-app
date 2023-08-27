@@ -4,13 +4,21 @@ import { AnswerLabel } from ".";
 
 describe("AnswerLabel", () => {
   test("Answerラベルの文字列がAnswer（3）である", () => {
-    render(<AnswerLabel answer={123} count={3} />);
+    const mockValues = {
+      answer: 123,
+      count: 3,
+    };
+    render(<AnswerLabel {...mockValues} />);
     const answerLabel = screen.getByRole("label");
-    expect(answerLabel).toHaveTextContent("Answer（3）");
+    expect(answerLabel).toHaveTextContent(`Answer（${mockValues.count}）`);
   });
   test("Answerが123である", () => {
-    render(<AnswerLabel answer={123} count={3} />);
+    const mockValues = {
+      answer: 123,
+      count: 3,
+    };
+    render(<AnswerLabel {...mockValues} />);
     const answerLabel = screen.getByTestId("answer");
-    expect(answerLabel).toHaveTextContent("123");
+    expect(answerLabel).toHaveTextContent(String(mockValues.answer));
   });
 });
