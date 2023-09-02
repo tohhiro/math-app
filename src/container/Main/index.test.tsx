@@ -96,3 +96,41 @@ describe("Answerの（）のカウント", () => {
     expect(answerLabel.textContent).toBe("Answer（2）");
   });
 });
+describe("リセットボタン", () => {
+  test("ボタンが+の時に2回クリックしたら、Answer（2）と表示され、リセットボタンを押すとAnswer（0）と表示される", async () => {
+    render(<Main />);
+    const user = userEvent.setup();
+    const buttonElement = screen.getAllByRole("button")[0];
+    await user.click(buttonElement); // Start
+    await user.click(buttonElement); // +
+    await user.click(buttonElement); // Reset
+    await user.click(buttonElement); // +
+    const answerLabel = screen.getByRole("label");
+    await waitFor(() => {
+      expect(answerLabel.textContent).toBe("Answer（2）");
+    });
+    const resetButtonElement = screen.getAllByRole("button")[1];
+    await user.click(resetButtonElement);
+
+    await waitFor(() => {
+      expect(answerLabel.textContent).toBe("Answer（0）");
+    });
+  });
+  test("ボタンが+の時にクリックしたら、9秒台のタイムが表示され、リセットボタンを押すと10:00:00と表示される", async () => {
+    render(<Main />);
+    const user = userEvent.setup();
+    const buttonElement = screen.getAllByRole("button")[0];
+    await user.click(buttonElement); // Start
+    await user.click(buttonElement); // +
+    const timerLabel = screen.getByTestId("timer");
+    await waitFor(() => {
+      expect(timerLabel.textContent).toMatch(/^09:/);
+    });
+    const resetButtonElement = screen.getAllByRole("button")[1];
+    await user.click(resetButtonElement);
+
+    await waitFor(() => {
+      expect(timerLabel.textContent).toBe("10:00:000");
+    });
+  });
+});
