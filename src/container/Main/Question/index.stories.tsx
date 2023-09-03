@@ -1,5 +1,5 @@
 import React from "react";
-import { Question } from ".";
+import { Question, QuestionProps } from ".";
 import { createQuestion } from "../index";
 
 export default {
@@ -8,6 +8,15 @@ export default {
 };
 
 export const Default: React.FC = (): JSX.Element => {
+  const defaultQuestion = "----" as QuestionProps;
+  const mockData = {
+    questionLeft: defaultQuestion,
+    questionRight: defaultQuestion,
+  };
+  return <Question {...mockData} />;
+};
+
+export const ShowQuestion: React.FC = (): JSX.Element => {
   const mockData = {
     questionLeft: createQuestion(),
     questionRight: createQuestion(),
