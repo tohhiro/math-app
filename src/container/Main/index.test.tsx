@@ -36,8 +36,13 @@ describe("ボタンのテスト", () => {
     render(<Main />);
     const user = userEvent.setup();
     const buttonElement = screen.getAllByRole("button")[0];
-    await user.click(buttonElement);
-    await user.click(buttonElement);
+    const clickButton = async (button: HTMLElement, times: number) => {
+      for (let i = 0; i < times; i++) {
+        await user.click(button);
+      }
+    };
+
+    await clickButton(buttonElement, 2);
     expect(buttonElement.textContent).toContain("Reset");
   });
 });
@@ -88,10 +93,13 @@ describe("Answerの（）のカウント", () => {
     render(<Main />);
     const user = userEvent.setup();
     const buttonElement = screen.getAllByRole("button")[0];
-    await user.click(buttonElement); // Start
-    await user.click(buttonElement); // +
-    await user.click(buttonElement); // Reset
-    await user.click(buttonElement); // +
+    const clickButton = async (button: HTMLElement, times: number) => {
+      for (let i = 0; i < times; i++) {
+        await user.click(button);
+      }
+    };
+
+    await clickButton(buttonElement, 4);
     const answerLabel = screen.getByRole("label");
     expect(answerLabel.textContent).toBe("Answer（2）");
   });
@@ -101,10 +109,15 @@ describe("リセットボタン", () => {
     render(<Main />);
     const user = userEvent.setup();
     const buttonElement = screen.getAllByRole("button")[0];
-    await user.click(buttonElement); // Start
-    await user.click(buttonElement); // +
-    await user.click(buttonElement); // Reset
-    await user.click(buttonElement); // +
+
+    const clickButton = async (button: HTMLElement, times: number) => {
+      for (let i = 0; i < times; i++) {
+        await user.click(button);
+      }
+    };
+
+    await clickButton(buttonElement, 4);
+
     const answerLabel = screen.getByRole("label");
     await waitFor(() => {
       expect(answerLabel.textContent).toBe("Answer（2）");
@@ -120,8 +133,14 @@ describe("リセットボタン", () => {
     render(<Main />);
     const user = userEvent.setup();
     const buttonElement = screen.getAllByRole("button")[0];
-    await user.click(buttonElement); // Start
-    await user.click(buttonElement); // +
+    const clickButton = async (button: HTMLElement, times: number) => {
+      for (let i = 0; i < times; i++) {
+        await user.click(button);
+      }
+    };
+
+    await clickButton(buttonElement, 2);
+
     const timerLabel = screen.getByTestId("timer");
     await waitFor(() => {
       expect(timerLabel.textContent).toMatch(/^09:/);
