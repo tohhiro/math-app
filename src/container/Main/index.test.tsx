@@ -47,10 +47,21 @@ describe("ボタンのテスト", () => {
   });
 });
 describe("問題の生成", () => {
-  test("問題の数値が4桁を生成する", () => {
+  test("初期値の表示がd「----」になる", () => {
+    render(<Main />);
+    const defaultQuestion = "----";
+    const questionLeft = screen.getByTestId("questionLeft").textContent;
+    const questionRight = screen.getByTestId("questionRight").textContent;
+    expect(questionLeft).toBe(defaultQuestion);
+    expect(questionRight).toBe(defaultQuestion);
+  });
+  test("問題の数値が4桁を生成する", async () => {
     render(<Main />);
     const questionLeft = screen.getByTestId("questionLeft").textContent;
     const questionRight = screen.getByTestId("questionRight").textContent;
+    const user = userEvent.setup();
+    const buttonElement = screen.getAllByRole("button")[0];
+    await user.click(buttonElement);
     expect(questionLeft).toHaveLength(4);
     expect(questionRight).toHaveLength(4);
   });
