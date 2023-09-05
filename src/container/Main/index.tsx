@@ -18,12 +18,13 @@ export const createQuestion = () => {
 };
 
 export const Main: React.FC = () => {
+  const defaultQuestion = "----";
   const [question, setQuestion] = useState<{
     questionLeft: QuestionProps;
     questionRight: QuestionProps;
   }>({
-    questionLeft: "----",
-    questionRight: "----",
+    questionLeft: defaultQuestion,
+    questionRight: defaultQuestion,
   });
   const [answer, setAnswer] = useState<number | null>(null);
   const [btn, setBtn] = useState<ButtonLabelType>("Start");
@@ -75,7 +76,10 @@ export const Main: React.FC = () => {
     setIsStarting(false);
     setIsDisabled(false);
     setCount(0);
-    setQuestion({ questionLeft: "----", questionRight: "----" });
+    setQuestion({
+      questionLeft: defaultQuestion,
+      questionRight: defaultQuestion,
+    });
   };
 
   return (
