@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { ResetButton } from ".";
 
 describe("ResetButton", () => {
-  test("ボタンの表示", () => {
+  test("「リセット」というボタンが表示される", () => {
     const onClick = jest.fn();
     render(<ResetButton onClick={onClick} />);
     const resetLabel = screen.getByRole("button");
