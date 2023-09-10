@@ -6,7 +6,17 @@ export default {
   component: Button,
 };
 
-export const Default: React.FC = (): JSX.Element => {
+export const Start: React.FC = (): JSX.Element => {
+  const mockData = {
+    onClick: () => {},
+    label: "Start",
+    disabled: false,
+  };
+
+  return <Button {...mockData} />;
+};
+
+export const Plus: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
     label: "+",
