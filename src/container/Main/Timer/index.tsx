@@ -45,15 +45,17 @@ export const Timer: React.FC<Props> = (props: Props) => {
   const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
   const milliseconds = remainingTime % 1000;
 
+  const padZero = (num: number, length: number) => {
+    return String(num).padStart(length, "0");
+  };
+
   return (
     <div className={classes.container} data-testid="timer">
-      <span className={classes.number}>{String(minutes).padStart(2, "0")}</span>
+      <span className={classes.number}>{padZero(minutes, 2)}</span>
       <span className={classes.colon}>:</span>
-      <span className={classes.number}>{String(seconds).padStart(2, "0")}</span>
+      <span className={classes.number}>{padZero(seconds, 2)}</span>
       <span className={classes.colon}>:</span>
-      <span className={classes.number}>
-        {String(milliseconds).padStart(3, "0")}
-      </span>
+      <span className={classes.number}>{padZero(milliseconds, 3)}</span>
     </div>
   );
 };
