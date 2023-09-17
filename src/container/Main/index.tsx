@@ -7,6 +7,7 @@ import { AnswerLabel } from "./AnswerLabel";
 import { Timer } from "./Timer";
 import { QuestionProps } from "./Question";
 import { ResetButton } from "./ResetButton";
+import { PartsLayout } from "./PartsLayout";
 
 type ButtonLabelType = "Start" | "+" | "Reset";
 
@@ -83,21 +84,21 @@ export const Main: React.FC = () => {
   };
 
   return (
-    <main>
+    <main className={classes.main}>
       <Timer isStarting={isStarting} onOverTime={onOverTime} />
       <Question
         questionLeft={question.questionLeft}
         questionRight={question.questionRight}
       />
-      <div className={classes.container}>
+      <PartsLayout>
         <Button onClick={calResetBtn} label={btn} disabled={isDisabled} />
-      </div>
-      <div className={classes.container}>
+      </PartsLayout>
+      <PartsLayout>
         <AnswerLabel answer={answer} count={count} />
-      </div>
-      <div>
+      </PartsLayout>
+      <PartsLayout>
         <ResetButton onClick={onHandleReset} />
-      </div>
+      </PartsLayout>
     </main>
   );
 };
