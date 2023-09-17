@@ -81,6 +81,7 @@ export const Main: React.FC = () => {
       questionLeft: defaultQuestion,
       questionRight: defaultQuestion,
     });
+    setAnswer(null);
   };
 
   return (
