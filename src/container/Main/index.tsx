@@ -18,15 +18,39 @@ export const createQuestion = () => {
   return Number(fourDigitNumber);
 };
 
-export const Main: React.FC = () => {
+const createQuestionRows = (rowNumber: number, isDefaultValue: boolean) => {
   const defaultQuestion = "----";
-  const [question, setQuestion] = useState<{
-    questionLeft: QuestionProps;
-    questionRight: QuestionProps;
-  }>({
-    questionLeft: defaultQuestion,
-    questionRight: defaultQuestion,
-  });
+  const questions: QuestionProps[] = [];
+  for (let i = 0; i < rowNumber; i++) {
+    if (isDefaultValue) {
+      questions.push(defaultQuestion);
+    } else {
+      questions.push(createQuestion());
+    }
+  }
+  return questions;
+};
+
+const sumQuestions = (questions: QuestionProps[]) => {
+  let total = questions.reduce((sum, element) => {
+    if (typeof sum === "number" && typeof element === "number")
+      return sum + element;
+  }, 0);
+  return total;
+};
+
+const checkArrayType = (questions: QuestionProps[]) => {
+  const isQuestionType = questions.some(
+    (question) => typeof question === "number"
+  );
+  return isQuestionType;
+};
+
+export const Main: React.FC = () => {
+  const [questions, setQuestion] = useState<QuestionProps[]>(
+    createQuestionRows(2, true)
+  );
+
   const [answer, setAnswer] = useState<number | null>(null);
   const [btn, setBtn] = useState<ButtonLabelType>("Start");
   const [isStarting, setIsStarting] = useState(false);
@@ -51,20 +75,13 @@ export const Main: React.FC = () => {
   };
 
   const plusAnswer = () => {
-    if (
-      typeof question.questionLeft !== "number" ||
-      typeof question.questionRight !== "number"
-    )
-      return;
-    const getAnswer = question.questionLeft + question.questionRight;
-    setAnswer(getAnswer);
+    if (!checkArrayType(questions)) return;
+    const getAnswer = sumQuestions(questions);
+    if (typeof getAnswer === "number") setAnswer(getAnswer);
   };
 
   const resetQuestion = () => {
-    setQuestion({
-      questionLeft: createQuestion(),
-      questionRight: createQuestion(),
-    });
+    setQuestion(createQuestionRows(2, false));
     setAnswer(null);
   };
 
@@ -77,20 +94,14 @@ export const Main: React.FC = () => {
     setIsStarting(false);
     setIsDisabled(false);
     setCount(0);
-    setQuestion({
-      questionLeft: defaultQuestion,
-      questionRight: defaultQuestion,
-    });
+    setQuestion(createQuestionRows(2, true));
     setAnswer(null);
   };
 
   return (
     <main className={classes.main}>
       <Timer isStarting={isStarting} onOverTime={onOverTime} />
-      <Question
-        questionLeft={question.questionLeft}
-        questionRight={question.questionRight}
-      />
+      <Question questions={questions} />
       <PartsLayout>
         <Button onClick={calResetBtn} label={btn} disabled={isDisabled} />
       </PartsLayout>

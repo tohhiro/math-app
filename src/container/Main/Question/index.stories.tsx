@@ -10,16 +10,14 @@ export default {
 export const Default: React.FC = (): JSX.Element => {
   const defaultQuestion = "----" as QuestionProps;
   const mockData = {
-    questionLeft: defaultQuestion,
-    questionRight: defaultQuestion,
+    questions: [defaultQuestion, defaultQuestion],
   };
   return <Question {...mockData} />;
 };
 
 export const ShowQuestion: React.FC = (): JSX.Element => {
   const mockData = {
-    questionLeft: createQuestion(),
-    questionRight: createQuestion(),
+    questions: [createQuestion(), createQuestion()],
   };
   return <Question {...mockData} />;
 };
