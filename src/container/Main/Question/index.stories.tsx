@@ -1,6 +1,5 @@
 import React from "react";
 import { Question, QuestionProps } from ".";
-import { createQuestion } from "../index";
 
 export default {
   title: "Main/Question",
@@ -17,7 +16,7 @@ export const Default: React.FC = (): JSX.Element => {
 
 export const ShowQuestion: React.FC = (): JSX.Element => {
   const mockData = {
-    questions: [createQuestion(), createQuestion()],
+    questions: [1234, 5678],
   };
   return <Question {...mockData} />;
 };
