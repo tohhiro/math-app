@@ -9,12 +9,18 @@ type QuestionsProps = {
 
 export const Question: React.FC<QuestionsProps> = (props: QuestionsProps) => {
   const { questions } = props;
+  const questionTestIds = ["questionLeft", "questionRight"];
 
   return (
     <div className={classes.container}>
-      <p data-testid="questionLeft">{questions[0]}</p>
-      <p>+</p>
-      <p data-testid="questionRight">{questions[1]}</p>
+      {questions.map((question, index) => (
+        <>
+          <p key={question} data-testid={questionTestIds[index]}>
+            {question}
+          </p>
+          {index < questions.length - 1 && <p>+</p>}
+        </>
+      ))}
     </div>
   );
 };
