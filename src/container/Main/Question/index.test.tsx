@@ -4,7 +4,7 @@ import { Question } from ".";
 
 describe("Question", () => {
   test("Questionに渡されたpropsが表示されている", () => {
-    const mockValues = { questions: [123, 456] };
+    const mockValues = { questions: [1234, 4567] };
 
     render(<Question {...mockValues} />);
     const questionLeft = screen.getByTestId("questionLeft");
@@ -13,7 +13,7 @@ describe("Question", () => {
     expect(questionRight).toHaveTextContent(String(mockValues.questions[1]));
   });
   test("Questionに渡されたpropsが計算される", () => {
-    const mockValues = { questions: [123, 456] };
+    const mockValues = { questions: [1234, 4567] };
     render(<Question {...mockValues} />);
     const questionLeft = screen.getByTestId("questionLeft");
     const questionRight = screen.getByTestId("questionRight");
