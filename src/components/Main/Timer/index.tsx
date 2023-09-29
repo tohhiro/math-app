@@ -41,21 +41,32 @@ export const Timer: React.FC<Props> = (props: Props) => {
     return () => clearInterval(intervalId); // クリーンアップ時にタイマーの更新を停止
   }, [durationInMs, isStarting]);
 
-  const minutes = Math.floor(remainingTime / (60 * 1000));
-  const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-  const milliseconds = remainingTime % 1000;
-
   const padZero = (num: number, length: number) => {
     return String(num).padStart(length, "0");
   };
 
+  const minutes = Math.floor(remainingTime / (60 * 1000));
+  const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+  const milliseconds = remainingTime % 1000;
+
+  const showLeftTime = {
+    minutes: padZero(minutes, 2),
+    seconds: padZero(seconds, 2),
+    milliseconds: padZero(milliseconds, 3),
+  };
+
   return (
     <div className={classes.container} data-testid="timer">
-      <span className={classes.number}>{padZero(minutes, 2)}</span>
-      <span className={classes.colon}>:</span>
-      <span className={classes.number}>{padZero(seconds, 2)}</span>
-      <span className={classes.colon}>:</span>
-      <span className={classes.number}>{padZero(milliseconds, 3)}</span>
+      {Object.keys(showLeftTime).map((time, index) => (
+        <>
+          <span key={time} className={classes.number}>
+            {showLeftTime[time]}
+          </span>
+          {index < Object.keys(showLeftTime).length - 1 && (
+            <span className={classes.colon}>:</span>
+          )}
+        </>
+      ))}
     </div>
   );
 };
