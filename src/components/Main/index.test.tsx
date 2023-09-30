@@ -116,6 +116,12 @@ describe("Answerの（）のカウント", () => {
   });
 });
 describe("リセットボタン", () => {
+  let confirmSpy: jest.SpyInstance;
+  beforeEach(() => {
+    confirmSpy = jest.spyOn(window, "confirm");
+    confirmSpy.mockImplementation(jest.fn(() => true));
+  });
+  afterEach(() => confirmSpy.mockRestore());
   test("ボタンが+の時に2回クリックしたら、Answer（2）と表示され、リセットボタンを押すとAnswer（0）と表示される", async () => {
     render(<Main />);
     const user = userEvent.setup();

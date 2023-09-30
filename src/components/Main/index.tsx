@@ -90,12 +90,15 @@ export const Main: React.FC = () => {
   };
 
   const onHandleReset = () => {
-    setBtn("Start");
-    setIsStarting(false);
-    setIsDisabled(false);
-    setCount(0);
-    setQuestion(createQuestionRows(2, true));
-    setAnswer(null);
+    const isConfirm = confirm("Are you sure you want to reset?");
+    if (isConfirm) {
+      setBtn("Start");
+      setIsStarting(false);
+      setIsDisabled(false);
+      setCount(0);
+      setQuestion(createQuestionRows(2, true));
+      setAnswer(null);
+    }
   };
 
   return (
