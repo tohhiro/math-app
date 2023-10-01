@@ -8,6 +8,7 @@ import { Timer } from "./Timer";
 import { QuestionProps } from "./Question";
 import { ResetButton } from "./ResetButton";
 import { PartsLayout } from "./PartsLayout";
+import { useHeaderColor } from "src/context/useHeaderColorContext";
 
 type ButtonLabelType = "Start" | "+" | "Reset";
 
@@ -57,11 +58,14 @@ export const Main: React.FC = () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [count, setCount] = useState(0);
 
+  const headerColor = useHeaderColor();
+
   const calResetBtn = () => {
     if (btn === "Start") {
       setBtn("+");
       setIsStarting(true);
       resetQuestion();
+      headerColor.set("running");
     }
     if (btn === "+") {
       plusAnswer();
@@ -98,6 +102,7 @@ export const Main: React.FC = () => {
       setCount(0);
       setQuestion(createQuestionRows(2, true));
       setAnswer(null);
+      headerColor.set("stop");
     }
   };
 
