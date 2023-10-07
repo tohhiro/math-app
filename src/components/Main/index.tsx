@@ -117,7 +117,7 @@ export const Main: React.FC = () => {
         <AnswerLabel answer={answer} count={count} />
       </PartsLayout>
       <PartsLayout>
-        <ResetButton onClick={onHandleReset} />
+        <ResetButton onClick={onHandleReset} disabled={!isStarting} />
       </PartsLayout>
     </main>
   );

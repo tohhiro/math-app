@@ -122,6 +122,12 @@ describe("リセットボタン", () => {
     confirmSpy.mockImplementation(jest.fn(() => true));
   });
   afterEach(() => confirmSpy.mockRestore());
+  test("初期状態はリセットはdisableになる", () => {
+    render(<Main />);
+    const buttonElement = screen.getByRole("button", { name: "リセット" });
+    console.log("btn", buttonElement);
+    waitFor(() => expect(buttonElement).toBeEnabled());
+  });
   test("ボタンが+の時に2回クリックしたら、Answer（2）と表示され、リセットボタンを押すとAnswer（0）と表示される", async () => {
     render(<Main />);
     const user = userEvent.setup();
@@ -162,11 +168,14 @@ describe("リセットボタン", () => {
     await waitFor(() => {
       expect(timerLabel.textContent).toMatch(/^09:/);
     });
-    const resetButtonElement = screen.getAllByRole("button")[1];
+    const resetButtonElement = screen.getByRole("button", { name: "リセット" });
+    waitFor(() => expect(resetButtonElement).toBeEnabled());
     await user.click(resetButtonElement);
 
     await waitFor(() => {
       expect(timerLabel.textContent).toBe("10:00:000");
     });
+
+    waitFor(() => expect(resetButtonElement).toBeDisabled());
   });
 });
