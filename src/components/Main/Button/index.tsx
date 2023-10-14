@@ -1,5 +1,6 @@
-import React from "react";
-import classes from "./index.module.css";
+/* eslint-disable indent */
+import React from 'react';
+import classes from './index.module.css';
 
 type Props = {
   onClick: () => void;
@@ -12,12 +13,12 @@ export const Button: React.FC<Props> = (props: Props) => {
   return (
     <button
       className={`${classes.button} ${
-        label === "Start"
+        label === 'Start'
           ? classes.buttonColor_start
-          : label === "+"
+          : label === '+'
           ? classes.buttonColor_plus
           : classes.buttonColor_reset
-      } ${disabled ? classes.disabled : ""}`}
+      } ${disabled ? classes.disabled : ''}`}
       onClick={onClick}
       disabled={disabled}
     >

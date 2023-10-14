@@ -1,6 +1,6 @@
-import React from "react";
-import classes from "./index.module.css";
-import { useHeaderColor } from "src/context/useHeaderColorContext";
+import React from 'react';
+import { useHeaderColor } from 'src/context/useHeaderColorContext';
+import classes from './index.module.css';
 
 export const Header: React.FC = () => {
   const headerColor = useHeaderColor();
@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
     <header
       className={`${classes.header}
       ${
-        headerColor.get() === "running"
+        headerColor.get() === 'running'
           ? classes.headerGreen
           : classes.headerRed
       }`}

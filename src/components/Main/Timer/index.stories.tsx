@@ -1,8 +1,8 @@
-import React from "react";
-import { Timer } from ".";
+import React from 'react';
+import { Timer } from '.';
 
 export default {
-  title: "Main/Timer",
+  title: 'Main/Timer',
   component: Timer,
 };
 

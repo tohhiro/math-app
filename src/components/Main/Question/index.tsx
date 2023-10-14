@@ -1,7 +1,7 @@
-import React from "react";
-import classes from "./index.module.css";
+import React from 'react';
+import classes from './index.module.css';
 
-export type QuestionProps = "----" | number;
+export type QuestionProps = '----' | number;
 
 type QuestionsProps = {
   questions: QuestionProps[];
@@ -9,7 +9,7 @@ type QuestionsProps = {
 
 export const Question: React.FC<QuestionsProps> = (props: QuestionsProps) => {
   const { questions } = props;
-  const questionTestIds = ["questionLeft", "questionRight"];
+  const questionTestIds = ['questionLeft', 'questionRight'];
 
   return (
     <div className={classes.container}>

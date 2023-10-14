@@ -1,8 +1,8 @@
-import React from "react";
-import { ResetButton } from ".";
+import React from 'react';
+import { ResetButton } from '.';
 
 export default {
-  title: "Main/ResetButton",
+  title: 'Main/ResetButton',
   component: ResetButton,
 };
 

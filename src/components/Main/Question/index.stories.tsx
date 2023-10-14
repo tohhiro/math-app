@@ -1,13 +1,13 @@
-import React from "react";
-import { Question, QuestionProps } from ".";
+import React from 'react';
+import { Question, QuestionProps } from '.';
 
 export default {
-  title: "Main/Question",
+  title: 'Main/Question',
   component: Question,
 };
 
 export const Default: React.FC = (): JSX.Element => {
-  const defaultQuestion = "----" as QuestionProps;
+  const defaultQuestion = '----' as QuestionProps;
   const mockData = {
     questions: [defaultQuestion, defaultQuestion],
   };

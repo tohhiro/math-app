@@ -1,6 +1,6 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext } from 'react';
 
-type HeaderColorProps = "stop" | "running";
+type HeaderColorProps = 'stop' | 'running';
 
 type HeaderColorInitProps = {
   headerColor: HeaderColorProps;
@@ -14,7 +14,7 @@ export const HeaderColorProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [headerColor, setHeaderColor] = useState<HeaderColorProps>("stop");
+  const [headerColor, setHeaderColor] = useState<HeaderColorProps>('stop');
 
   return (
     <HeaderColorContext.Provider value={{ headerColor, setHeaderColor }}>

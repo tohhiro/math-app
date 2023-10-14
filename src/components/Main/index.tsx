@@ -1,26 +1,24 @@
-import React from "react";
-import classes from "./index.module.css";
-import { useState } from "react";
-import { Question } from "./Question";
-import { Button } from "./Button";
-import { AnswerLabel } from "./AnswerLabel";
-import { Timer } from "./Timer";
-import { QuestionProps } from "./Question";
-import { ResetButton } from "./ResetButton";
-import { PartsLayout } from "./PartsLayout";
-import { useHeaderColor } from "src/context/useHeaderColorContext";
+import React, { useState } from 'react';
+import { useHeaderColor } from 'src/context/useHeaderColorContext';
+import classes from './index.module.css';
+import { Question, QuestionProps } from './Question';
+import { Button } from './Button';
+import { AnswerLabel } from './AnswerLabel';
+import { Timer } from './Timer';
+import { ResetButton } from './ResetButton';
+import { PartsLayout } from './PartsLayout';
 
-type ButtonLabelType = "Start" | "+" | "Reset";
+type ButtonLabelType = 'Start' | '+' | 'Reset';
 
 export const createQuestion = () => {
   const fourDigitNumber = Math.floor(Math.random() * 10000)
     .toString()
-    .padEnd(4, "0");
+    .padEnd(4, '0');
   return Number(fourDigitNumber);
 };
 
 const createQuestionRows = (rowNumber: number, isDefaultValue: boolean) => {
-  const defaultQuestion = "----";
+  const defaultQuestion = '----';
   const questions: QuestionProps[] = [];
   for (let i = 0; i < rowNumber; i++) {
     if (isDefaultValue) {
@@ -33,8 +31,8 @@ const createQuestionRows = (rowNumber: number, isDefaultValue: boolean) => {
 };
 
 const sumQuestions = (questions: QuestionProps[]) => {
-  let total = questions.reduce((sum, element) => {
-    if (typeof sum === "number" && typeof element === "number")
+  const total = questions.reduce((sum, element) => {
+    if (typeof sum === 'number' && typeof element === 'number')
       return sum + element;
   }, 0);
   return total;
@@ -42,18 +40,18 @@ const sumQuestions = (questions: QuestionProps[]) => {
 
 const checkArrayType = (questions: QuestionProps[]) => {
   const isQuestionType = questions.some(
-    (question) => typeof question === "number"
+    (question) => typeof question === 'number',
   );
   return isQuestionType;
 };
 
 export const Main: React.FC = () => {
   const [questions, setQuestion] = useState<QuestionProps[]>(
-    createQuestionRows(2, true)
+    createQuestionRows(2, true),
   );
 
   const [answer, setAnswer] = useState<number | null>(null);
-  const [btn, setBtn] = useState<ButtonLabelType>("Start");
+  const [btn, setBtn] = useState<ButtonLabelType>('Start');
   const [isStarting, setIsStarting] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [count, setCount] = useState(0);
@@ -61,27 +59,27 @@ export const Main: React.FC = () => {
   const headerColor = useHeaderColor();
 
   const calResetBtn = () => {
-    if (btn === "Start") {
-      setBtn("+");
+    if (btn === 'Start') {
+      setBtn('+');
       setIsStarting(true);
       resetQuestion();
-      headerColor.set("running");
+      headerColor.set('running');
     }
-    if (btn === "+") {
+    if (btn === '+') {
       plusAnswer();
-      setBtn("Reset");
+      setBtn('Reset');
       setCount((prevCount) => prevCount + 1);
     }
-    if (btn === "Reset") {
+    if (btn === 'Reset') {
       resetQuestion();
-      setBtn("+");
+      setBtn('+');
     }
   };
 
   const plusAnswer = () => {
     if (!checkArrayType(questions)) return;
     const getAnswer = sumQuestions(questions);
-    if (typeof getAnswer === "number") setAnswer(getAnswer);
+    if (typeof getAnswer === 'number') setAnswer(getAnswer);
   };
 
   const resetQuestion = () => {
@@ -94,15 +92,16 @@ export const Main: React.FC = () => {
   };
 
   const onHandleReset = () => {
-    const isConfirm = confirm("Are you sure you want to reset?");
+    // eslint-disable-next-line no-alert
+    const isConfirm = confirm('Are you sure you want to reset?');
     if (isConfirm) {
-      setBtn("Start");
+      setBtn('Start');
       setIsStarting(false);
       setIsDisabled(false);
       setCount(0);
       setQuestion(createQuestionRows(2, true));
       setAnswer(null);
-      headerColor.set("stop");
+      headerColor.set('stop');
     }
   };
 
