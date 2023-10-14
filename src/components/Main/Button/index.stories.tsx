@@ -1,15 +1,15 @@
-import React from "react";
-import { Button } from ".";
+import React from 'react';
+import { Button } from '.';
 
 export default {
-  title: "Main/Button",
+  title: 'Main/Button',
   component: Button,
 };
 
 export const Start: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
-    label: "Start",
+    label: 'Start',
     disabled: false,
   };
 
@@ -19,7 +19,7 @@ export const Start: React.FC = (): JSX.Element => {
 export const Plus: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
-    label: "+",
+    label: '+',
     disabled: false,
   };
 
@@ -29,7 +29,7 @@ export const Plus: React.FC = (): JSX.Element => {
 export const Reset: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
-    label: "Reset",
+    label: 'Reset',
     disabled: false,
   };
 
@@ -39,7 +39,7 @@ export const Reset: React.FC = (): JSX.Element => {
 export const Disabled: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
-    label: "Reset",
+    label: 'Reset',
     disabled: true,
   };
 

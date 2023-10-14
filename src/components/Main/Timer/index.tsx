@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import classes from "./index.module.css";
+import React, { useEffect, useState } from 'react';
+import classes from './index.module.css';
 
 type Props = {
   isStarting: boolean;
@@ -17,8 +17,8 @@ export const Timer: React.FC<Props> = (props: Props) => {
     let intervalId: NodeJS.Timeout;
 
     const updateTimer = () => {
-      let currentTime = Date.now();
-      let timeLeft = endTime - currentTime;
+      const currentTime = Date.now();
+      const timeLeft = endTime - currentTime;
 
       if (timeLeft <= 0) {
         clearInterval(intervalId);
@@ -29,8 +29,8 @@ export const Timer: React.FC<Props> = (props: Props) => {
       }
     };
 
-    let startTime = Date.now();
-    let endTime = startTime + durationInMs;
+    const startTime = Date.now();
+    const endTime = startTime + durationInMs;
 
     if (isStarting) {
       intervalId = setInterval(updateTimer, 10); // 1秒ごとにタイマーを更新
@@ -41,9 +41,8 @@ export const Timer: React.FC<Props> = (props: Props) => {
     return () => clearInterval(intervalId); // クリーンアップ時にタイマーの更新を停止
   }, [durationInMs, isStarting]);
 
-  const padZero = (num: number, length: number) => {
-    return String(num).padStart(length, "0");
-  };
+  const padZero = (num: number, length: number) =>
+    String(num).padStart(length, '0');
 
   const minutes = Math.floor(remainingTime / (60 * 1000));
   const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);

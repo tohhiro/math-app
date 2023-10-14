@@ -1,8 +1,8 @@
-import React from "react";
-import { AnswerLabel } from ".";
+import React from 'react';
+import { AnswerLabel } from '.';
 
 export default {
-  title: "Main/AnswerLabel",
+  title: 'Main/AnswerLabel',
   component: AnswerLabel,
 };
 

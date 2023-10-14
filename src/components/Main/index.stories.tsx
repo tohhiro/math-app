@@ -1,11 +1,9 @@
-import React from "react";
-import { Main } from ".";
+import React from 'react';
+import { Main } from '.';
 
 export default {
-  title: "Main",
+  title: 'Main',
   component: Main,
 };
 
-export const Default: React.FC = (): JSX.Element => {
-  return <Main />;
-};
+export const Default: React.FC = (): JSX.Element => <Main />;

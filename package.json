@@ -23,7 +23,9 @@
     "storybook:build": "storybook build",
     "vrt:snapshot": "storycap --serverCmd 'npx http-server storybook-static -p 6006' http://localhost:6006",
     "vrt:run": "reg-suit run",
-    "vrt:compare": "reg-suit compare"
+    "vrt:compare": "reg-suit compare",
+    "lint": "eslint 'src/components/**/*.{ts,tsx}'",
+    "format": "prettier --write 'src/components/**/*.{ts,tsx}'"
   },
   "eslintConfig": {
     "extends": [
@@ -57,12 +59,24 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/webpack-env": "^1.18.1",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
     "babel-plugin-named-exports-order": "^0.0.2",
-    "eslint": "^7.32.0",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-storybook": "^0.6.12",
+    "eslint-plugin-testing-library": "^6.1.0",
+    "prettier": "^3.0.3",
     "prop-types": "^15.8.1",
     "reg-notify-github-plugin": "^0.12.2",
     "storybook": "^7.0.26",
+    "stylelint-processor-styled-components": "^1.10.0",
     "typescript": "^4.9.5",
     "webpack": "^5.88.1"
   }
