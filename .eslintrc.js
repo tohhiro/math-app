@@ -42,6 +42,8 @@ module.exports = {
     'comma-dangle': 'off',
     curly: 'off',
     'implicit-arrow-linebreak': 'off',
+    'operator-linebreak': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   // eslint-disable-next-line semi
 };
