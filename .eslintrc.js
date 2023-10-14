@@ -1,29 +1,29 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: [
     'airbnb-base',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
   ],
   overrides: [
     {
       env: {
-        node: true
+        node: true,
       },
       files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
-        sourceType: 'script'
-      }
-    }
+        sourceType: 'script',
+      },
+    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'react'],
   rules: {
@@ -41,7 +41,7 @@ module.exports = {
     'nonblock-statement-body-position': 'off',
     'comma-dangle': 'off',
     curly: 'off',
-    semi: ['error', 'always']
-  }
+    'implicit-arrow-linebreak': 'off',
+  },
   // eslint-disable-next-line semi
-}
+};
