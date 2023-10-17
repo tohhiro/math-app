@@ -4,8 +4,6 @@ import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
 import { HeaderColorProvider } from 'src/context/useHeaderColorContext';
 
-// テストコメント
-
 function App() {
   return (
     <>
