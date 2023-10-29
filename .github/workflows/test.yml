@@ -4,8 +4,6 @@ on:
   pull_request:
     branches:
       - main # pull requestが作成されたブランチ
-    paths:
-      - 'src/**'
 
 jobs:
   test:
