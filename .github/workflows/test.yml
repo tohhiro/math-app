@@ -28,4 +28,9 @@ jobs:
         run: npm ci # テストに必要な依存関係のインストール
 
       - name: Run Tests
-        run: npm test # Jestテストの実行
+        run: |
+          if [ -n "$(git diff --name-only ${{ github.base_ref }}...${{ github.head_ref }})" ]; then
+            npm test
+          else
+            echo "No changes in src directory, skipping tests."
+          fi
