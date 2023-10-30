@@ -27,8 +27,5 @@ jobs:
       - name: Install npm
         run: npm install # テストに必要な依存関係のインストール
 
-      - name: Install Dependencies
-        run: npm ci # テストに必要な依存関係のインストール
-
       - name: Run Tests
         run: npm test
