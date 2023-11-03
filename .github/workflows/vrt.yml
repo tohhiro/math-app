@@ -1,10 +1,10 @@
 name: Run VRT
 
 on: 
-  pull_request:
+  push:
     branches:
       - main
-      
+
 env:
   REG_NOTIFY_CLIENT_ID: ${{ secrets.REG_NOTIFY_CLIENT_ID }}
   AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
