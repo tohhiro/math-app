@@ -1,7 +1,7 @@
 name: Run VRT
 
 on: 
-  push:
+  pull_request:
     branches:
       - main
     paths:
