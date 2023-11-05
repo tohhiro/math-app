@@ -25,7 +25,7 @@ jobs:
         run: npm install typescript
 
       - name: Install npm
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Run Tests
         run: npm test
