@@ -14,15 +14,18 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "14" # 使用するNode.jsのバージョン
+
+      - name: Install TypeScript
+        run: npm install typescript
 
       - name: Install npm
-        run: npm install
+        run: npm install # テストに必要な依存関係のインストール
 
       - name: Run Tests
         run: npm test
