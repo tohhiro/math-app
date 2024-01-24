@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
           : classes.headerRed
       }`}
     >
-      暗算しましょう。
+      暗算しましょう
     </header>
   );
 };
