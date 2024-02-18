@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './index.module.css';
 
-export type QuestionProps = '----' | number;
+export type QuestionProps = string | number;
 
 type QuestionsProps = {
   questions: QuestionProps[];
