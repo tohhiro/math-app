@@ -10,21 +10,29 @@ import { PartsLayout } from './PartsLayout';
 
 type ButtonLabelType = 'Start' | '+' | 'Reset';
 
-export const createQuestion = () => {
-  const fourDigitNumber = Math.floor(Math.random() * 10000)
+// NOTE: 4桁の問題を生成する（変更するとテストも修正が必用）
+const digitNumber = 4;
+
+export const createQuestion = (digit: number) => {
+  const num = 10;
+  const fourDigitNumber = Math.floor(Math.random() * num ** digit)
     .toString()
-    .padEnd(4, '0');
+    .padEnd(digit, '0');
   return Number(fourDigitNumber);
 };
 
-const createQuestionRows = (rowNumber: number, isDefaultValue: boolean) => {
-  const defaultQuestion = '----';
+const createQuestionRows = (
+  rowNumber: number,
+  isDefaultValue: boolean,
+  digit: number,
+) => {
+  const defaultQuestion = new Array(digit).fill('-').join('') as QuestionProps;
   const questions: QuestionProps[] = [];
   for (let i = 0; i < rowNumber; i++) {
     if (isDefaultValue) {
       questions.push(defaultQuestion);
     } else {
-      questions.push(createQuestion());
+      questions.push(createQuestion(digit));
     }
   }
   return questions;
@@ -47,7 +55,7 @@ const checkArrayType = (questions: QuestionProps[]) => {
 
 export const Main: React.FC = () => {
   const [questions, setQuestion] = useState<QuestionProps[]>(
-    createQuestionRows(2, true),
+    createQuestionRows(2, true, digitNumber),
   );
 
   const [answer, setAnswer] = useState<number | null>(null);
@@ -83,7 +91,7 @@ export const Main: React.FC = () => {
   };
 
   const resetQuestion = () => {
-    setQuestion(createQuestionRows(2, false));
+    setQuestion(createQuestionRows(2, false, digitNumber));
     setAnswer(null);
   };
 
@@ -99,7 +107,7 @@ export const Main: React.FC = () => {
       setIsStarting(false);
       setIsDisabled(false);
       setCount(0);
-      setQuestion(createQuestionRows(2, true));
+      setQuestion(createQuestionRows(2, true, digitNumber));
       setAnswer(null);
       headerColor.set('stop');
     }
