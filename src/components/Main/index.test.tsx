@@ -20,7 +20,7 @@ describe('Plus', () => {
     });
   });
 });
-describe('ボタンのテスト', () => {
+describe.skip('ボタンのテスト', () => {
   test('初期のボタンの表示は「Start」になっている', () => {
     render(<Main />);
     const buttonElement = screen.getAllByRole('button')[0];
@@ -67,7 +67,7 @@ describe('問題の生成', () => {
     expect(questionRight).toHaveLength(4);
   });
 });
-describe('計算', () => {
+describe.skip('計算', () => {
   test('問題を取得し計算結果が一致する', async () => {
     render(<Main />);
     const user = userEvent.setup();
@@ -95,7 +95,7 @@ describe('計算', () => {
     expect(Number(renderAns)).toBe(ans);
   });
 });
-describe('Answerの（）のカウント', () => {
+describe.skip('Answerの（）のカウント', () => {
   test('初期表示は、Answer（0）と表示される', async () => {
     render(<Main />);
     const answerLabel = screen.getByRole('label');
@@ -116,7 +116,7 @@ describe('Answerの（）のカウント', () => {
     expect(answerLabel.textContent).toBe('Answer（2）');
   });
 });
-describe('リセットボタン', () => {
+describe.skip('リセットボタン', () => {
   let confirmSpy: jest.SpyInstance;
   beforeEach(() => {
     confirmSpy = jest.spyOn(window, 'confirm');

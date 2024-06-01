@@ -16,16 +16,6 @@ export const Start: React.FC = (): JSX.Element => {
   return <Button {...mockData} />;
 };
 
-export const Plus: React.FC = (): JSX.Element => {
-  const mockData = {
-    onClick: () => {},
-    label: '+',
-    disabled: false,
-  };
-
-  return <Button {...mockData} />;
-};
-
 export const Reset: React.FC = (): JSX.Element => {
   const mockData = {
     onClick: () => {},
