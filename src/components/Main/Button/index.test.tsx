@@ -9,7 +9,6 @@ describe('ボタンラベルの表示', () => {
     const mockValues = {
       onClick,
       label: 'Start',
-      disabled: false,
     };
     render(<Button {...mockValues} />);
     const buttonLabel = screen.getByRole('button');
@@ -20,7 +19,6 @@ describe('ボタンラベルの表示', () => {
     const mockValues = {
       onClick,
       label: '+',
-      disabled: false,
     };
     render(<Button {...mockValues} />);
     const buttonLabel = screen.getByRole('button');
@@ -31,22 +29,9 @@ describe('ボタンラベルの表示', () => {
     const mockValues = {
       onClick,
       label: 'Reset',
-      disabled: false,
     };
     render(<Button {...mockValues} />);
     const plusMark = screen.getByRole('button');
     expect(plusMark).toHaveTextContent(mockValues.label);
-  });
-  test('ボタンラベルに「Reset」と表示され、disabledになる', async () => {
-    const onClick = jest.fn();
-    const mockValues = {
-      onClick,
-      label: 'Reset',
-      disabled: true,
-    };
-    render(<Button {...mockValues} />);
-    const buttonLabel = screen.getByRole('button');
-    expect(buttonLabel).toHaveTextContent(mockValues.label);
-    expect(buttonLabel).toBeDisabled();
   });
 });

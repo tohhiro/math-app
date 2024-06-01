@@ -1,10 +1,7 @@
 .container {
-  text-align: center;
   display: flex;
+  font-weight: bold;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-
+  height: 32px;
 }
-
-

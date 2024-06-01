@@ -3,12 +3,13 @@ import { useHeaderColor } from 'src/context/useHeaderColorContext';
 import classes from './index.module.css';
 import { Question, QuestionProps } from './Question';
 import { Button } from './Button';
-import { AnswerLabel } from './AnswerLabel';
 import { Timer } from './Timer';
-import { ResetButton } from './ResetButton';
 import { PartsLayout } from './PartsLayout';
+import { NumberButton } from './NumberButton';
+import { DisplayValue } from './DisplayInputValue';
+import { EnterButton } from './EnterButton';
 
-type ButtonLabelType = 'Start' | '+' | 'Reset';
+type ButtonLabelType = 'Start' | 'Reset';
 
 // NOTE: 4桁の問題を生成する（変更するとテストも修正が必用）
 const digitNumber = 4;
@@ -38,65 +39,66 @@ const createQuestionRows = (
   return questions;
 };
 
-const sumQuestions = (questions: QuestionProps[]) => {
-  const total = questions.reduce((sum, element) => {
-    if (typeof sum === 'number' && typeof element === 'number')
-      return sum + element;
-  }, 0);
-  return total;
-};
-
-const checkArrayType = (questions: QuestionProps[]) => {
-  const isQuestionType = questions.some(
-    (question) => typeof question === 'number',
-  );
-  return isQuestionType;
-};
-
 export const Main: React.FC = () => {
   const [questions, setQuestion] = useState<QuestionProps[]>(
     createQuestionRows(2, true, digitNumber),
   );
 
-  const [answer, setAnswer] = useState<number | null>(null);
+  const [answer, setAnswer] = useState<{ correct: number; incorrect: number }>({
+    correct: 0,
+    incorrect: 0,
+  });
   const [btn, setBtn] = useState<ButtonLabelType>('Start');
   const [isStarting, setIsStarting] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [count, setCount] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(true);
+  // const [count, setCount] = useState(0);
+  const [inputValue, setInputValue] = useState('');
 
   const headerColor = useHeaderColor();
 
   const calResetBtn = () => {
     if (btn === 'Start') {
-      setBtn('+');
+      setBtn('Reset');
       setIsStarting(true);
+      setIsDisabled(false);
       resetQuestion();
       headerColor.set('running');
+      return;
     }
-    if (btn === '+') {
-      plusAnswer();
-      setBtn('Reset');
-      setCount((prevCount) => prevCount + 1);
-    }
-    if (btn === 'Reset') {
-      resetQuestion();
-      setBtn('+');
-    }
+
+    onHandleReset();
   };
 
-  const plusAnswer = () => {
-    if (!checkArrayType(questions)) return;
-    const getAnswer = sumQuestions(questions);
-    if (typeof getAnswer === 'number') setAnswer(getAnswer);
+  const onHandleAnswer = () => {
+    const calAnswer =
+      typeof questions[0] === 'number' && typeof questions[1] === 'number'
+        ? questions[0] + questions[1]
+        : 0;
+
+    if (calAnswer === Number(inputValue)) {
+      setAnswer((prev) => ({
+        correct: prev.correct + 1,
+        incorrect: prev.incorrect,
+      }));
+    } else {
+      setAnswer((prev) => ({
+        correct: prev.correct,
+        incorrect: prev.incorrect + 1,
+      }));
+    }
+    resetQuestion();
+    setInputValue('');
   };
 
   const resetQuestion = () => {
     setQuestion(createQuestionRows(2, false, digitNumber));
-    setAnswer(null);
+    setAnswer({ correct: 0, incorrect: 0 });
   };
 
   const onOverTime = () => {
     setIsDisabled(true);
+    // eslint-disable-next-line no-alert
+    confirm(`Correct: ${answer.correct}, Incorrect: ${answer.incorrect}`);
   };
 
   const onHandleReset = () => {
@@ -105,26 +107,40 @@ export const Main: React.FC = () => {
     if (isConfirm) {
       setBtn('Start');
       setIsStarting(false);
-      setIsDisabled(false);
-      setCount(0);
+      setIsDisabled(true);
       setQuestion(createQuestionRows(2, true, digitNumber));
-      setAnswer(null);
+      setAnswer({ correct: 0, incorrect: 0 });
+      setInputValue('');
       headerColor.set('stop');
     }
   };
 
+  const onInputValues = (val: number | 'DEL') => {
+    setInputValue((prev) => {
+      if (val === 'DEL') {
+        return prev.slice(0, -1);
+      }
+      return prev + String(val);
+    });
+  };
+
   return (
     <main className={classes.main}>
-      <Timer isStarting={isStarting} onOverTime={onOverTime} />
+      <PartsLayout>
+        <Timer isStarting={isStarting} onOverTime={onOverTime} />
+      </PartsLayout>
+      <PartsLayout>
+        <Button onClick={calResetBtn} label={btn} />
+      </PartsLayout>
       <Question questions={questions} />
       <PartsLayout>
-        <Button onClick={calResetBtn} label={btn} disabled={isDisabled} />
+        <DisplayValue value={inputValue} />
       </PartsLayout>
       <PartsLayout>
-        <AnswerLabel answer={answer} count={count} />
+        <NumberButton onClick={onInputValues} disabled={isDisabled} />
       </PartsLayout>
       <PartsLayout>
-        <ResetButton onClick={onHandleReset} disabled={!isStarting} />
+        <EnterButton onClick={onHandleAnswer} disabled={isDisabled} />
       </PartsLayout>
     </main>
   );

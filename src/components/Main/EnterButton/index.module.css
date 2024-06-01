@@ -1,0 +1,30 @@
+.button {
+    width: 146px;
+    height: 36px;
+    font-size: 20px;
+    user-select: none;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid #333333;
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
+.button:active {
+    color: #333333;
+    background-color: #07f76f;
+    transition: .1s;
+}
+
+.disabled {
+    width: 146px;
+    height: 36px;
+    font-size: 20px;
+    user-select: none;
+    border-radius: 20px;
+    color: #333333;
+    background-color: #f0f0f0;
+    border: 1px solid #333333;
+    opacity: 0.5;
+
+}
