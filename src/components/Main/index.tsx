@@ -8,6 +8,7 @@ import { PartsLayout } from './PartsLayout';
 import { NumberButton } from './NumberButton';
 import { DisplayValue } from './DisplayInputValue';
 import { EnterButton } from './EnterButton';
+import { DisplayResult } from './DisplayResult';
 
 type ButtonLabelType = 'Start' | 'Reset';
 
@@ -55,19 +56,21 @@ export const Main: React.FC = () => {
   const [isStarting, setIsStarting] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [inputValue, setInputValue] = useState(NotStartValue);
+  const [isInit, setIsInit] = useState(false);
 
   const headerColor = useHeaderColor();
 
   const calResetBtn = () => {
     if (btn === 'Start') {
       setBtn('Reset');
+      setIsInit(true);
       setIsStarting(true);
       setIsDisabled(false);
       resetQuestion();
+      setAnswer({ correct: 0, incorrect: 0 });
       headerColor.set('running');
       return;
     }
-
     onHandleReset();
   };
 
@@ -92,14 +95,10 @@ export const Main: React.FC = () => {
 
   const onOverTime = () => {
     setIsDisabled(true);
-    // eslint-disable-next-line no-alert
-    alert(`Correct: ${answer.correct}, Incorrect: ${answer.incorrect}`);
-
     setBtn('Start');
     setIsStarting(false);
     setIsDisabled(true);
     setQuestion(createQuestionRows(2, true, digitNumber));
-    setAnswer({ correct: 0, incorrect: 0 });
     setInputValue(NotStartValue);
     headerColor.set('stop');
   };
@@ -138,10 +137,17 @@ export const Main: React.FC = () => {
       <PartsLayout>
         <Button onClick={calResetBtn} label={btn} />
       </PartsLayout>
-      <Question questions={questions} />
+      <PartsLayout>
+        {!isStarting && isInit ? (
+          <DisplayResult answer={answer} />
+        ) : (
+          <Question questions={questions} />
+        )}
+      </PartsLayout>
       <PartsLayout>
         <DisplayValue value={inputValue} />
       </PartsLayout>
+
       <PartsLayout>
         <NumberButton onClick={onInputValues} disabled={isDisabled} />
       </PartsLayout>

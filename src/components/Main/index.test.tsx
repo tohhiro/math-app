@@ -20,19 +20,13 @@ describe('Plus', () => {
     });
   });
 });
-describe.skip('ボタンのテスト', () => {
+describe('ボタンのテスト', () => {
   test('初期のボタンの表示は「Start」になっている', () => {
     render(<Main />);
     const buttonElement = screen.getAllByRole('button')[0];
     expect(buttonElement.textContent).toContain('Start');
   });
-  test('最初にクリックしたあとのボタンの表示は「+」になっている', async () => {
-    render(<Main />);
-    const user = userEvent.setup();
-    const buttonElement = screen.getAllByRole('button')[0];
-    await user.click(buttonElement);
-    expect(buttonElement.textContent).toContain('+');
-  });
+
   test('2回クリックしたあとのボタンの表示は「Reset」になっている', async () => {
     render(<Main />);
     const user = userEvent.setup();
@@ -93,89 +87,5 @@ describe.skip('計算', () => {
     expect(questionLeft).toHaveLength(4);
     expect(questionRight).toHaveLength(4);
     expect(Number(renderAns)).toBe(ans);
-  });
-});
-describe.skip('Answerの（）のカウント', () => {
-  test('初期表示は、Answer（0）と表示される', async () => {
-    render(<Main />);
-    const answerLabel = screen.getByRole('label');
-    expect(answerLabel.textContent).toBe('Answer（0）');
-  });
-  test('ボタンが+の時に2回クリックしたら、Answer（2）と表示される', async () => {
-    render(<Main />);
-    const user = userEvent.setup();
-    const buttonElement = screen.getAllByRole('button')[0];
-    const clickButton = async (button: HTMLElement, times: number) => {
-      for (let i = 0; i < times; i++) {
-        await user.click(button);
-      }
-    };
-
-    await clickButton(buttonElement, 4);
-    const answerLabel = screen.getByRole('label');
-    expect(answerLabel.textContent).toBe('Answer（2）');
-  });
-});
-describe.skip('リセットボタン', () => {
-  let confirmSpy: jest.SpyInstance;
-  beforeEach(() => {
-    confirmSpy = jest.spyOn(window, 'confirm');
-    confirmSpy.mockImplementation(jest.fn(() => true));
-  });
-  afterEach(() => confirmSpy.mockRestore());
-  test('初期状態はリセットはdisableになる', async () => {
-    render(<Main />);
-    const buttonElement = screen.getByRole('button', { name: 'リセット' });
-    waitFor(() => expect(buttonElement).toBeEnabled());
-  });
-  test('ボタンが+の時に2回クリックしたら、Answer（2）と表示され、リセットボタンを押すとAnswer（0）と表示される', async () => {
-    render(<Main />);
-    const user = userEvent.setup();
-    const buttonElement = screen.getAllByRole('button')[0];
-
-    const clickButton = async (button: HTMLElement, times: number) => {
-      for (let i = 0; i < times; i++) {
-        await user.click(button);
-      }
-    };
-
-    await clickButton(buttonElement, 4);
-
-    const answerLabel = screen.getByRole('label');
-    await waitFor(() => {
-      expect(answerLabel.textContent).toBe('Answer（2）');
-    });
-    const resetButtonElement = screen.getAllByRole('button')[1];
-    await user.click(resetButtonElement);
-
-    await waitFor(() => {
-      expect(answerLabel.textContent).toBe('Answer（0）');
-    });
-  });
-  test('ボタンが+の時にクリックしたら、9秒台のタイムが表示され、リセットボタンを押すと10:00:00と表示される', async () => {
-    render(<Main />);
-    const user = userEvent.setup();
-    const buttonElement = screen.getAllByRole('button')[0];
-    const clickButton = async (button: HTMLElement, times: number) => {
-      for (let i = 0; i < times; i++) {
-        await user.click(button);
-      }
-    };
-
-    await clickButton(buttonElement, 2);
-
-    const timerLabel = screen.getByTestId('timer');
-    await waitFor(() => {
-      expect(timerLabel.textContent).toMatch(/^09:/);
-    });
-    const resetButtonElement = screen.getByRole('button', { name: 'リセット' });
-    waitFor(() => expect(resetButtonElement).toBeEnabled());
-    await user.click(resetButtonElement);
-
-    await waitFor(() => {
-      expect(timerLabel.textContent).toBe('10:00:000');
-    });
-
-    waitFor(() => expect(resetButtonElement).toBeDisabled());
   });
 });
