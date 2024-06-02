@@ -9,8 +9,10 @@ type Props = {
 
 export const EnterButton: React.FC<Props> = ({ onClick, disabled }) => (
   <button
-    className={disabled ? classes.disabled : classes.button}
-    onClick={!disabled && onClick}
+    className={`${classes.button} ${
+      disabled ? classes.disabled : classes.enabled
+    }`}
+    onClick={onClick}
     disabled={disabled}
   >
     Enter

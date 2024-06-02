@@ -14,7 +14,9 @@ export const NumberButton: React.FC<Props> = ({ onClick, disabled }) => (
   <div className={classes.container}>
     {numberButtons.map((button, idx) => (
       <div
-        className={`${disabled ? classes.disabled : classes.button}`}
+        className={`${classes.button} ${
+          disabled ? classes.disabled : classes.enabled
+        }`}
         key={idx}
         onClick={() => !disabled && onClick(button)}
       >
