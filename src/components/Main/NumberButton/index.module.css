@@ -1,7 +1,7 @@
 .container {
         display: grid;
-	grid-template-columns: repeat(3, 50px);
-	grid-template-rows: repeat(3, 50px);
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
         grid-gap: 8px;
 }
 
@@ -10,28 +10,26 @@
         background-color: #666;
         cursor: pointer;
         text-align: center;
-        line-height: 50px;
+        line-height: 100px;
         border-radius: 10px;
         user-select: none;
-      
+        font-size: x-large;
 }
 
 .button:last-of-type, .disabled:last-of-type {
         grid-column: span 2;
+}    
+.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
 }
 
-.button:active {
+.enabled{
+        opacity: 1;
+}
+
+.enabled:active {
         color: #000;
         background-color: #07f76f;
         transition: .1s;
-}
-       
-.disabled {
-        color: #FFF;
-        background-color: #666;
-        text-align: center;
-        line-height: 50px;
-        border-radius: 10px;
-        user-select: none;
-        opacity: 0.5;
 }

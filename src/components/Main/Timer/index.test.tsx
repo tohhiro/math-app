@@ -10,7 +10,7 @@ describe('Timer', () => {
   afterEach(() => {
     jest.useRealTimers();
   });
-  test('1000*10*60を渡すと10:00:000が表示される', () => {
+  test('1000*10*60を渡すと05:00:000が表示される', () => {
     const mockValues = {
       durationInMs: 1000 * 10 * 60,
       isStarting: false,
@@ -18,9 +18,9 @@ describe('Timer', () => {
     };
     render(<Timer {...mockValues} />);
     const timerLabel = screen.getByTestId('timer');
-    expect(timerLabel).toHaveTextContent('10:00:000');
+    expect(timerLabel).toHaveTextContent('05:00:000');
   });
-  test('1000*10*60を渡たし、1秒待つと9秒台で表示される', async () => {
+  test('1000*10*60を渡たし、1秒待つと4秒台で表示される', async () => {
     const mockValues = {
       durationInMs: 1000 * 10 * 60,
       isStarting: true,
@@ -30,7 +30,7 @@ describe('Timer', () => {
     jest.advanceTimersByTime(1000);
     await waitFor(() => {
       const timerLabel = screen.getByTestId('timer');
-      expect(timerLabel).toHaveTextContent(/^09:/);
+      expect(timerLabel).toHaveTextContent(/^04:/);
     });
   });
 });

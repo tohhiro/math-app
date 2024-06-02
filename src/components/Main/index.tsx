@@ -14,6 +14,9 @@ type ButtonLabelType = 'Start' | 'Reset';
 // NOTE: 4桁の問題を生成する（変更するとテストも修正が必用）
 const digitNumber = 4;
 
+const NoDisplayValue = 'PRESS NUMBERS';
+const NotStartValue = 'PRESS START';
+
 export const createQuestion = (digit: number) => {
   const num = 10;
   const fourDigitNumber = Math.floor(Math.random() * num ** digit)
@@ -51,8 +54,7 @@ export const Main: React.FC = () => {
   const [btn, setBtn] = useState<ButtonLabelType>('Start');
   const [isStarting, setIsStarting] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
-  // const [count, setCount] = useState(0);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(NotStartValue);
 
   const headerColor = useHeaderColor();
 
@@ -76,29 +78,30 @@ export const Main: React.FC = () => {
         : 0;
 
     if (calAnswer === Number(inputValue)) {
-      setAnswer((prev) => ({
-        correct: prev.correct + 1,
-        incorrect: prev.incorrect,
-      }));
+      setAnswer((prev) => ({ ...prev, correct: prev.correct + 1 }));
     } else {
-      setAnswer((prev) => ({
-        correct: prev.correct,
-        incorrect: prev.incorrect + 1,
-      }));
+      setAnswer((prev) => ({ ...prev, incorrect: prev.incorrect + 1 }));
     }
     resetQuestion();
-    setInputValue('');
+    setInputValue(NoDisplayValue);
   };
 
   const resetQuestion = () => {
     setQuestion(createQuestionRows(2, false, digitNumber));
-    setAnswer({ correct: 0, incorrect: 0 });
   };
 
   const onOverTime = () => {
     setIsDisabled(true);
     // eslint-disable-next-line no-alert
-    confirm(`Correct: ${answer.correct}, Incorrect: ${answer.incorrect}`);
+    alert(`Correct: ${answer.correct}, Incorrect: ${answer.incorrect}`);
+
+    setBtn('Start');
+    setIsStarting(false);
+    setIsDisabled(true);
+    setQuestion(createQuestionRows(2, true, digitNumber));
+    setAnswer({ correct: 0, incorrect: 0 });
+    setInputValue(NotStartValue);
+    headerColor.set('stop');
   };
 
   const onHandleReset = () => {
@@ -110,7 +113,7 @@ export const Main: React.FC = () => {
       setIsDisabled(true);
       setQuestion(createQuestionRows(2, true, digitNumber));
       setAnswer({ correct: 0, incorrect: 0 });
-      setInputValue('');
+      setInputValue(NotStartValue);
       headerColor.set('stop');
     }
   };
@@ -119,6 +122,9 @@ export const Main: React.FC = () => {
     setInputValue((prev) => {
       if (val === 'DEL') {
         return prev.slice(0, -1);
+      }
+      if (prev.includes(NoDisplayValue) || prev.includes(NotStartValue)) {
+        return String(val);
       }
       return prev + String(val);
     });
