@@ -45,9 +45,10 @@ export const Timer: React.FC<Props> = (props: Props) => {
   const padZero = (num: number, length: number) =>
     String(num).padStart(length, '0');
 
-  const minutes = Math.floor(remainingTime / (60 * 1000));
-  const seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-  const milliseconds = remainingTime % 1000;
+  const ONE_SECOND = 1000;
+  const minutes = Math.floor(remainingTime / (60 * ONE_SECOND));
+  const seconds = Math.floor((remainingTime % (60 * ONE_SECOND)) / ONE_SECOND);
+  const milliseconds = remainingTime % ONE_SECOND;
 
   const showLeftTime = {
     minutes: padZero(minutes, 2),

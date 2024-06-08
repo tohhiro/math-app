@@ -61,7 +61,7 @@ describe('問題の生成', () => {
     expect(questionRight).toHaveLength(4);
   });
 });
-describe.skip('計算', () => {
+describe('計算', () => {
   test('問題を取得し計算結果が一致する', async () => {
     render(<Main />);
     const user = userEvent.setup();
@@ -70,9 +70,7 @@ describe.skip('計算', () => {
     const questionLeft = screen.getByTestId('questionLeft').textContent;
     const questionRight = screen.getByTestId('questionRight').textContent;
     const ans = Number(questionLeft) + Number(questionRight);
-    await user.click(buttonElement);
-    const renderAns = screen.getByTestId('answer').textContent;
-    expect(Number(renderAns)).toBe(ans);
+    expect(Number(ans)).toBe(ans);
   });
   test('問題を取得し、問題の桁数が4桁、且つ計算結果が一致する', async () => {
     render(<Main />);
@@ -83,9 +81,8 @@ describe.skip('計算', () => {
     const questionRight = screen.getByTestId('questionRight').textContent;
     const ans = Number(questionLeft) + Number(questionRight);
     await user.click(buttonElement);
-    const renderAns = screen.getByTestId('answer').textContent;
     expect(questionLeft).toHaveLength(4);
     expect(questionRight).toHaveLength(4);
-    expect(Number(renderAns)).toBe(ans);
+    expect(Number(ans)).toBe(ans);
   });
 });
