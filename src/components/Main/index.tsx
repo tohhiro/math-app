@@ -93,8 +93,7 @@ export const Main: React.FC = () => {
     setQuestion(createQuestionRows(2, false, digitNumber));
   };
 
-  const onOverTime = () => {
-    setIsDisabled(true);
+  const onReset = () => {
     setBtn('Start');
     setIsStarting(false);
     setIsDisabled(true);
@@ -103,17 +102,17 @@ export const Main: React.FC = () => {
     headerColor.set('stop');
   };
 
+  const onOverTime = () => {
+    setIsDisabled(true);
+    onReset();
+  };
+
   const onHandleReset = () => {
     // eslint-disable-next-line no-alert
     const isConfirm = confirm('Are you sure you want to reset?');
     if (isConfirm) {
-      setBtn('Start');
-      setIsStarting(false);
-      setIsDisabled(true);
-      setQuestion(createQuestionRows(2, true, digitNumber));
       setAnswer({ correct: 0, incorrect: 0 });
-      setInputValue(NotStartValue);
-      headerColor.set('stop');
+      onReset();
     }
   };
 
