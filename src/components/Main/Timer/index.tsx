@@ -18,7 +18,6 @@ export const Timer: React.FC<Props> = (props: Props) => {
 
     const updateTimer = () => {
       const currentTime = Date.now();
-      // eslint-disable-next-line no-use-before-define
       const timeLeft = endTime - currentTime;
 
       if (timeLeft <= 0) {

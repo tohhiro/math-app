@@ -6,7 +6,7 @@ import { Button } from './Button';
 import { Timer } from './Timer';
 import { PartsLayout } from './PartsLayout';
 import { NumberButton } from './NumberButton';
-import { DisplayValue } from './DisplayInputValue';
+import { DisplayInputValue } from './DisplayInputValue';
 import { EnterButton } from './EnterButton';
 import { DisplayResult } from './DisplayResult';
 
@@ -144,7 +144,7 @@ export const Main: React.FC = () => {
         )}
       </PartsLayout>
       <PartsLayout>
-        <DisplayValue value={inputValue} />
+        <DisplayInputValue value={inputValue} />
       </PartsLayout>
 
       <PartsLayout>

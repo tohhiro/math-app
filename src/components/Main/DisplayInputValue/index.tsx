@@ -5,6 +5,6 @@ type Props = {
   value: string;
 };
 
-export const DisplayValue: React.FC<Props> = ({ value }) => (
+export const DisplayInputValue: React.FC<Props> = ({ value }) => (
   <div className={classes.container}>{value}</div>
 );
