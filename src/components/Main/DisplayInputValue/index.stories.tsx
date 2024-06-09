@@ -1,9 +1,9 @@
 import React from 'react';
-import { DisplayValue } from '.';
+import { DisplayInputValue } from '.';
 
 export default {
-  title: 'Main/DisplayValue',
-  component: DisplayValue,
+  title: 'Main/DisplayInputValue',
+  component: DisplayInputValue,
 };
 
 export const Default: React.FC = (): JSX.Element => {
@@ -11,5 +11,5 @@ export const Default: React.FC = (): JSX.Element => {
     value: '1234',
   };
 
-  return <DisplayValue {...mockData} />;
+  return <DisplayInputValue {...mockData} />;
 };
