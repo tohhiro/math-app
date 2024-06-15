@@ -6,18 +6,13 @@ type Props = {
   label: string;
 };
 
-export const Button: React.FC<Props> = (props: Props) => {
-  const { onClick, label } = props;
-  return (
-    <button
-      className={`${classes.button} ${
-        label === 'Start'
-          ? classes.buttonColor_start
-          : classes.buttonColor_reset
-      }`}
-      onClick={onClick}
-    >
-      {label}
-    </button>
-  );
-};
+export const Button: React.FC<Props> = ({ onClick, label }) => (
+  <button
+    className={`${classes.button} ${
+      label === 'Start' ? classes.buttonColor_start : classes.buttonColor_reset
+    }`}
+    onClick={onClick}
+  >
+    {label}
+  </button>
+);

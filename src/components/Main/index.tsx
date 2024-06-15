@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHeaderColor } from 'src/context/useHeaderColorContext';
+import { createQuestionRows } from 'src/components/Main/helper/createQuestionRows';
 import classes from './index.module.css';
 import { Question, QuestionProps } from './Question';
 import { Button } from './Button';
@@ -14,38 +15,16 @@ type ButtonLabelType = 'Start' | 'Reset';
 
 // NOTE: 4桁の問題を生成する（変更するとテストも修正が必用）
 const digitNumber = 4;
-
 const NoDisplayValue = 'PRESS NUMBERS';
 const NotStartValue = 'PRESS START';
 
-export const createQuestion = (digit: number) => {
-  const num = 10;
-  const fourDigitNumber = Math.floor(Math.random() * num ** digit)
-    .toString()
-    .padEnd(digit, '0');
-  return Number(fourDigitNumber);
-};
-
-const createQuestionRows = (
-  rowNumber: number,
-  isDefaultValue: boolean,
-  digit: number,
-) => {
-  const defaultQuestion = new Array(digit).fill('-').join('') as QuestionProps;
-  const questions: QuestionProps[] = [];
-  for (let i = 0; i < rowNumber; i++) {
-    if (isDefaultValue) {
-      questions.push(defaultQuestion);
-    } else {
-      questions.push(createQuestion(digit));
-    }
-  }
-  return questions;
-};
-
 export const Main: React.FC = () => {
   const [questions, setQuestion] = useState<QuestionProps[]>(
-    createQuestionRows(2, true, digitNumber),
+    createQuestionRows({
+      rowNumber: 2,
+      isDefaultValue: true,
+      digit: digitNumber,
+    }),
   );
 
   const [answer, setAnswer] = useState<{ correct: number; incorrect: number }>({
@@ -90,14 +69,26 @@ export const Main: React.FC = () => {
   };
 
   const resetQuestion = () => {
-    setQuestion(createQuestionRows(2, false, digitNumber));
+    setQuestion(
+      createQuestionRows({
+        rowNumber: 2,
+        isDefaultValue: true,
+        digit: digitNumber,
+      }),
+    );
   };
 
   const onReset = () => {
     setBtn('Start');
     setIsStarting(false);
     setIsDisabled(true);
-    setQuestion(createQuestionRows(2, true, digitNumber));
+    setQuestion(
+      createQuestionRows({
+        rowNumber: 2,
+        isDefaultValue: true,
+        digit: digitNumber,
+      }),
+    );
     setInputValue(NotStartValue);
     headerColor.set('stop');
   };
@@ -133,9 +124,11 @@ export const Main: React.FC = () => {
       <PartsLayout>
         <Timer isStarting={isStarting} onOverTime={onOverTime} />
       </PartsLayout>
+
       <PartsLayout>
         <Button onClick={calResetBtn} label={btn} />
       </PartsLayout>
+
       <PartsLayout>
         {!isStarting && isInit ? (
           <DisplayResult answer={answer} />
@@ -143,6 +136,7 @@ export const Main: React.FC = () => {
           <Question questions={questions} />
         )}
       </PartsLayout>
+
       <PartsLayout>
         <DisplayInputValue value={inputValue} />
       </PartsLayout>
@@ -150,6 +144,7 @@ export const Main: React.FC = () => {
       <PartsLayout>
         <NumberButton onClick={onInputValues} disabled={isDisabled} />
       </PartsLayout>
+
       <PartsLayout>
         <EnterButton onClick={onHandleAnswer} disabled={isDisabled} />
       </PartsLayout>
