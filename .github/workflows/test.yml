@@ -19,10 +19,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: "18"
 
       - name: Install npm
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Run Tests
         run: npm test
