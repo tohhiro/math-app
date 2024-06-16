@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useHeaderColor } from 'src/context/useHeaderColorContext';
 import { createQuestionRows } from 'src/components/Main/helper/createQuestionRows';
 import classes from './index.module.css';
 import { Question, QuestionProps } from './Question';
-import { Button } from './Button';
+import { StartResetButton } from './StartResetButton';
 import { Timer } from './Timer';
 import { PartsLayout } from './PartsLayout';
 import { NumberButton } from './NumberButton';
@@ -39,36 +39,7 @@ export const Main: React.FC = () => {
 
   const headerColor = useHeaderColor();
 
-  const calResetBtn = () => {
-    if (btn === 'Start') {
-      setBtn('Reset');
-      setIsInit(true);
-      setIsStarting(true);
-      setIsDisabled(false);
-      resetQuestion();
-      setAnswer({ correct: 0, incorrect: 0 });
-      headerColor.set('running');
-      return;
-    }
-    onHandleReset();
-  };
-
-  const onHandleAnswer = () => {
-    const calAnswer =
-      typeof questions[0] === 'number' && typeof questions[1] === 'number'
-        ? questions[0] + questions[1]
-        : 0;
-
-    if (calAnswer === Number(inputValue)) {
-      setAnswer((prev) => ({ ...prev, correct: prev.correct + 1 }));
-    } else {
-      setAnswer((prev) => ({ ...prev, incorrect: prev.incorrect + 1 }));
-    }
-    resetQuestion();
-    setInputValue(NoDisplayValue);
-  };
-
-  const resetQuestion = () => {
+  const resetQuestion = useCallback(() => {
     setQuestion(
       createQuestionRows({
         rowNumber: 2,
@@ -76,9 +47,9 @@ export const Main: React.FC = () => {
         digit: digitNumber,
       }),
     );
-  };
+  }, [setQuestion, digitNumber]);
 
-  const onReset = () => {
+  const onReset = useCallback(() => {
     setBtn('Start');
     setIsStarting(false);
     setIsDisabled(true);
@@ -91,33 +62,86 @@ export const Main: React.FC = () => {
     );
     setInputValue(NotStartValue);
     headerColor.set('stop');
-  };
+  }, [
+    setBtn,
+    setIsStarting,
+    setIsDisabled,
+    setQuestion,
+    setInputValue,
+    headerColor,
+  ]);
 
-  const onOverTime = () => {
-    setIsDisabled(true);
-    onReset();
-  };
-
-  const onHandleReset = () => {
+  const onHandleReset = useCallback(() => {
     // eslint-disable-next-line no-alert
     const isConfirm = confirm('Are you sure you want to reset?');
     if (isConfirm) {
       setAnswer({ correct: 0, incorrect: 0 });
       onReset();
     }
-  };
+  }, [setAnswer, onReset]);
 
-  const onInputValues = (val: number | 'DEL') => {
-    setInputValue((prev) => {
-      if (val === 'DEL') {
-        return prev.slice(0, -1);
-      }
-      if (prev.includes(NoDisplayValue) || prev.includes(NotStartValue)) {
-        return String(val);
-      }
-      return prev + String(val);
-    });
-  };
+  const calResetBtn = useCallback(() => {
+    if (btn === 'Start') {
+      setBtn('Reset');
+      setIsInit(true);
+      setIsStarting(true);
+      setIsDisabled(false);
+      resetQuestion();
+      setAnswer({ correct: 0, incorrect: 0 });
+      headerColor.set('running');
+      return;
+    }
+    onHandleReset();
+  }, [
+    setBtn,
+    setIsInit,
+    setIsStarting,
+    setIsDisabled,
+    setAnswer,
+    onHandleReset,
+    btn,
+    resetQuestion,
+    headerColor.set,
+  ]);
+
+  const onHandleAnswer = useCallback(() => {
+    const calAnswer =
+      typeof questions[0] === 'number' && typeof questions[1] === 'number'
+        ? questions[0] + questions[1]
+        : 0;
+
+    if (calAnswer === Number(inputValue)) {
+      setAnswer((prev) => ({ ...prev, correct: prev.correct + 1 }));
+    } else {
+      setAnswer((prev) => ({ ...prev, incorrect: prev.incorrect + 1 }));
+    }
+    resetQuestion();
+    setInputValue(NoDisplayValue);
+  }, [inputValue, questions, setAnswer, resetQuestion, setInputValue]);
+
+  const onOverTime = useCallback(() => {
+    setIsDisabled(true);
+    onReset();
+  }, [setIsDisabled, onReset]);
+
+  const onInputValues = useCallback(
+    (val: number | 'DEL') => {
+      setInputValue((prev) => {
+        if (val === 'DEL' && prev.match(/[0-9]/)) {
+          return prev.slice(0, -1);
+        }
+        if (
+          prev.includes(NoDisplayValue) ||
+          prev.includes(NotStartValue) ||
+          val !== 'DEL'
+        ) {
+          return String(val);
+        }
+        return prev + String(val);
+      });
+    },
+    [setInputValue],
+  );
 
   return (
     <main className={classes.main}>
@@ -126,7 +150,7 @@ export const Main: React.FC = () => {
       </PartsLayout>
 
       <PartsLayout>
-        <Button onClick={calResetBtn} label={btn} />
+        <StartResetButton onClick={calResetBtn} label={btn} />
       </PartsLayout>
 
       <PartsLayout>

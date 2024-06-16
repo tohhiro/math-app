@@ -8,10 +8,12 @@ type Props = {
   };
 };
 
-export const DisplayResult: React.FC<Props> = ({ answer }) => (
+export const DisplayResult = React.memo(({ answer }: Props) => (
   <div className={classes.container}>
-    {Object.keys(answer).map((key) => (
-      <p key={key}>{`${key}: ${answer[key]}`}</p>
+    {Object.keys(answer).map((key, index) => (
+      <p key={`${key}${index}`}>{`${key}: ${answer[key]}`}</p>
     ))}
   </div>
-);
+));
+
+DisplayResult.displayName = 'DisplayResult';

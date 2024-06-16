@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { Button } from '.';
+import { StartResetButton } from '.';
 
 describe('ボタンラベルの表示', () => {
   test('ボタンラベルに「Start」と表示される', () => {
@@ -9,7 +9,7 @@ describe('ボタンラベルの表示', () => {
       onClick,
       label: 'Start',
     };
-    render(<Button {...mockValues} />);
+    render(<StartResetButton {...mockValues} />);
     const buttonLabel = screen.getByRole('button');
     expect(buttonLabel).toHaveTextContent(mockValues.label);
   });
@@ -19,7 +19,7 @@ describe('ボタンラベルの表示', () => {
       onClick,
       label: '+',
     };
-    render(<Button {...mockValues} />);
+    render(<StartResetButton {...mockValues} />);
     const buttonLabel = screen.getByRole('button');
     expect(buttonLabel).toHaveTextContent(mockValues.label);
   });
@@ -29,7 +29,7 @@ describe('ボタンラベルの表示', () => {
       onClick,
       label: 'Reset',
     };
-    render(<Button {...mockValues} />);
+    render(<StartResetButton {...mockValues} />);
     const plusMark = screen.getByRole('button');
     expect(plusMark).toHaveTextContent(mockValues.label);
   });

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from '.';
+import { StartResetButton } from '.';
 
 export default {
-  title: 'Main/Button',
-  component: Button,
+  title: 'Main/StartResetButton',
+  component: StartResetButton,
 };
 
 export const Start: React.FC = (): JSX.Element => {
@@ -13,7 +13,7 @@ export const Start: React.FC = (): JSX.Element => {
     disabled: false,
   };
 
-  return <Button {...mockData} />;
+  return <StartResetButton {...mockData} />;
 };
 
 export const Reset: React.FC = (): JSX.Element => {
@@ -23,7 +23,7 @@ export const Reset: React.FC = (): JSX.Element => {
     disabled: false,
   };
 
-  return <Button {...mockData} />;
+  return <StartResetButton {...mockData} />;
 };
 
 export const Disabled: React.FC = (): JSX.Element => {
@@ -33,5 +33,5 @@ export const Disabled: React.FC = (): JSX.Element => {
     disabled: true,
   };
 
-  return <Button {...mockData} />;
+  return <StartResetButton {...mockData} />;
 };

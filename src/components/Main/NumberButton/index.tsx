@@ -10,18 +10,20 @@ type Props = {
 
 const numberButtons: ButtonType[] = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, 'DEL'];
 
-export const NumberButton: React.FC<Props> = ({ onClick, disabled }) => (
+export const NumberButton = React.memo(({ onClick, disabled }: Props) => (
   <div className={classes.container}>
     {numberButtons.map((button, idx) => (
       <div
         className={`${classes.button} ${
           disabled ? classes.disabled : classes.enabled
         }`}
-        key={idx}
+        key={`${button}${idx}`}
         onClick={() => !disabled && onClick(button)}
       >
         {button}
       </div>
     ))}
   </div>
-);
+));
+
+NumberButton.displayName = 'NumberButton';

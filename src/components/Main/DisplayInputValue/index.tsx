@@ -5,6 +5,8 @@ type Props = {
   value: string;
 };
 
-export const DisplayInputValue: React.FC<Props> = ({ value }) => (
+export const DisplayInputValue = React.memo(({ value }: Props) => (
   <div className={classes.container}>{value}</div>
-);
+));
+
+DisplayInputValue.displayName = 'DisplayInputValue';

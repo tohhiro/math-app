@@ -6,7 +6,7 @@ type Props = {
   disabled: boolean;
 };
 
-export const EnterButton: React.FC<Props> = ({ onClick, disabled }) => (
+export const EnterButton = React.memo(({ onClick, disabled }: Props) => (
   <button
     className={`${classes.button} ${
       disabled ? classes.disabled : classes.enabled
@@ -16,4 +16,6 @@ export const EnterButton: React.FC<Props> = ({ onClick, disabled }) => (
   >
     Enter
   </button>
-);
+));
+
+EnterButton.displayName = 'EnterButton';

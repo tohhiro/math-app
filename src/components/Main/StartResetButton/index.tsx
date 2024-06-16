@@ -6,7 +6,10 @@ type Props = {
   label: string;
 };
 
-export const Button: React.FC<Props> = ({ onClick, label }) => (
+export const StartResetButton: React.FC<Props> = ({
+  onClick,
+  label,
+}: Props) => (
   <button
     className={`${classes.button} ${
       label === 'Start' ? classes.buttonColor_start : classes.buttonColor_reset

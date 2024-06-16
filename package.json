@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^14.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -17,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "dev": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sb": "storybook dev -p 6006",
@@ -56,8 +56,10 @@
     "@storybook/react": "^7.0.27",
     "@storybook/react-webpack5": "^7.0.26",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/webpack-env": "^1.18.1",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Main } from '.';
 
@@ -13,11 +13,10 @@ describe('Plus', () => {
     render(<Main />);
     const user = userEvent.setup();
     const buttonElement = screen.getAllByRole('button')[0];
-    await waitFor(() => {
-      user.click(buttonElement);
-      const plusMark = screen.getAllByText('+');
-      expect(plusMark).toHaveLength(1);
-    });
+
+    await user.click(buttonElement);
+    const plusMark = screen.getAllByText('+');
+    expect(plusMark).toHaveLength(1);
   });
 });
 describe('ボタンのテスト', () => {

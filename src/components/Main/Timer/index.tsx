@@ -57,11 +57,13 @@ export const Timer: React.FC<Props> = ({ isStarting, onOverTime }: Props) => {
     <div className={classes.container} data-testid="timer">
       {Object.keys(showLeftTime).map((time, index) => (
         <>
-          <span key={time} className={classes.number}>
+          <span key={`${time}${index}`} className={classes.number}>
             {showLeftTime[time]}
           </span>
           {index < Object.keys(showLeftTime).length - 1 && (
-            <span className={classes.colon}>:</span>
+            <span key={`${time}${index}colon`} className={classes.colon}>
+              :
+            </span>
           )}
         </>
       ))}
