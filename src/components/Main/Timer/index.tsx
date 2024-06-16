@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from './index.module.css';
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   onOverTime: () => void;
 };
 
-export const Timer: React.FC<Props> = ({ isStarting, onOverTime }: Props) => {
+export const Timer = ({ isStarting, onOverTime }: Props) => {
   const durationInMs = 1000 * 60 * 5; // 5分;
 
   const [remainingTime, setRemainingTime] = useState(durationInMs);
@@ -55,18 +55,11 @@ export const Timer: React.FC<Props> = ({ isStarting, onOverTime }: Props) => {
 
   return (
     <div className={classes.container} data-testid="timer">
-      {Object.keys(showLeftTime).map((time, index) => (
-        <>
-          <span key={`${time}${index}`} className={classes.number}>
-            {showLeftTime[time]}
-          </span>
-          {index < Object.keys(showLeftTime).length - 1 && (
-            <span key={`${time}${index}colon`} className={classes.colon}>
-              :
-            </span>
-          )}
-        </>
-      ))}
+      <span className={classes.number}>{showLeftTime.minutes}</span>
+      <span className={classes.colon}>:</span>
+      <span className={classes.number}>{showLeftTime.seconds}</span>
+      <span className={classes.colon}>:</span>
+      <span className={classes.number}>{showLeftTime.milliseconds}</span>
     </div>
   );
 };

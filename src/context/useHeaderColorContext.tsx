@@ -24,7 +24,7 @@ export const HeaderColorProvider = ({
 };
 
 type HeaderColorContextType = {
-  get: () => HeaderColorProps;
+  get: () => HeaderColorProps | undefined;
   set: (color: HeaderColorProps) => void;
 };
 export const useHeaderColor = (): HeaderColorContextType => {

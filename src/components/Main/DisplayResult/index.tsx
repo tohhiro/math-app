@@ -10,9 +10,8 @@ type Props = {
 
 export const DisplayResult = React.memo(({ answer }: Props) => (
   <div className={classes.container}>
-    {Object.keys(answer).map((key, index) => (
-      <p key={`${key}${index}`}>{`${key}: ${answer[key]}`}</p>
-    ))}
+    <p>正解: {answer.correct}</p>
+    <p>不正解: {answer.incorrect}</p>
   </div>
 ));
 
