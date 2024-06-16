@@ -21,7 +21,7 @@
     "eject": "react-scripts eject",
     "sb": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "vrt:snapshot": "storycap --serverCmd 'npx http-server storybook-static -p 6006' http://localhost:6006",
+    "vrt:snapshot": "storycap --serverCmd 'npx http-server storybook-static -p 6006' http://localhost:6006 --serverTimeout 60000",
     "vrt:run": "reg-suit run",
     "vrt:compare": "reg-suit compare",
     "lint": "eslint 'src/components/**/*.{ts,tsx}'",
