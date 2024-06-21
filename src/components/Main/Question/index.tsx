@@ -1,14 +1,15 @@
 import React from 'react';
 import classes from './index.module.css';
 
-export type QuestionProps = string | number;
+export type QuestionProps = '--:--' | number;
 
 type QuestionsProps = {
   questions: QuestionProps[];
 };
 
-export const Question: React.FC<QuestionsProps> = (props: QuestionsProps) => {
-  const { questions } = props;
+export const Question: React.FC<QuestionsProps> = ({
+  questions,
+}: QuestionsProps) => {
   const questionTestIds = ['questionLeft', 'questionRight'];
 
   return (

@@ -8,10 +8,10 @@ type Props = {
   };
 };
 
-export const DisplayResult: React.FC<Props> = (props) => (
+export const DisplayResult: React.FC<Props> = ({ answer }) => (
   <div className={classes.container}>
-    {Object.keys(props.answer).map((key) => (
-      <p key={key}>{`${key}: ${props.answer[key]}`}</p>
+    {Object.keys(answer).map((key) => (
+      <p key={key}>{`${key}: ${answer[key]}`}</p>
     ))}
   </div>
 );

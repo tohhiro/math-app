@@ -6,9 +6,7 @@ type Props = {
   onOverTime: () => void;
 };
 
-export const Timer: React.FC<Props> = (props: Props) => {
-  const { isStarting, onOverTime } = props;
-
+export const Timer: React.FC<Props> = ({ isStarting, onOverTime }: Props) => {
   const durationInMs = 1000 * 60 * 5; // 5分;
 
   const [remainingTime, setRemainingTime] = useState(durationInMs);
