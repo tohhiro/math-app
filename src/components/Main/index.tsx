@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHeaderColor } from 'src/context/useHeaderColorContext';
 import { createQuestionRows } from 'src/components/Main/helper/createQuestionRows';
 import classes from './index.module.css';
@@ -39,7 +39,7 @@ export const Main: React.FC = () => {
 
   const headerColor = useHeaderColor();
 
-  const calResetBtn = () => {
+  const calResetBtn = useCallback(() => {
     if (btn === 'Start') {
       setBtn('Reset');
       setIsInit(true);
@@ -51,9 +51,9 @@ export const Main: React.FC = () => {
       return;
     }
     onHandleReset();
-  };
+  }, [btn]);
 
-  const onHandleAnswer = () => {
+  const onHandleAnswer = useCallback(() => {
     const calAnswer =
       typeof questions[0] === 'number' && typeof questions[1] === 'number'
         ? questions[0] + questions[1]
@@ -66,19 +66,19 @@ export const Main: React.FC = () => {
     }
     resetQuestion();
     setInputValue(NoDisplayValue);
-  };
+  }, [inputValue, questions]);
 
-  const resetQuestion = () => {
+  const resetQuestion = useCallback(() => {
     setQuestion(
       createQuestionRows({
         rowNumber: 2,
-        isDefaultValue: true,
+        isDefaultValue: false,
         digit: digitNumber,
       }),
     );
-  };
+  }, [setQuestion]);
 
-  const onReset = () => {
+  const onReset = useCallback(() => {
     setBtn('Start');
     setIsStarting(false);
     setIsDisabled(true);
@@ -91,21 +91,21 @@ export const Main: React.FC = () => {
     );
     setInputValue(NotStartValue);
     headerColor.set('stop');
-  };
+  }, [setIsStarting, setBtn, setQuestion, setInputValue, headerColor]);
 
-  const onOverTime = () => {
+  const onOverTime = useCallback(() => {
     setIsDisabled(true);
     onReset();
-  };
+  }, [setIsDisabled, onReset]);
 
-  const onHandleReset = () => {
+  const onHandleReset = useCallback(() => {
     // eslint-disable-next-line no-alert
     const isConfirm = confirm('Are you sure you want to reset?');
     if (isConfirm) {
       setAnswer({ correct: 0, incorrect: 0 });
       onReset();
     }
-  };
+  }, [onReset]);
 
   const onInputValues = (val: number | 'DEL') => {
     setInputValue((prev) => {

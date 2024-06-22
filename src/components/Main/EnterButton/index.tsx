@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classes from './index.module.css';
 
 type Props = {
@@ -6,14 +6,18 @@ type Props = {
   disabled: boolean;
 };
 
-export const EnterButton: React.FC<Props> = ({ onClick, disabled }) => (
-  <button
-    className={`${classes.button} ${
-      disabled ? classes.disabled : classes.enabled
-    }`}
-    onClick={onClick}
-    disabled={disabled}
-  >
-    Enter
-  </button>
+export const EnterButton: React.FC<Props> = memo(
+  ({ onClick, disabled }: Props) => (
+    <button
+      className={`${classes.button} ${
+        disabled ? classes.disabled : classes.enabled
+      }`}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      Enter
+    </button>
+  ),
 );
+
+EnterButton.displayName = 'EnterButton';
