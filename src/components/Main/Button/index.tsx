@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classes from './index.module.css';
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   label: string;
 };
 
-export const Button: React.FC<Props> = ({ onClick, label }) => (
+export const Button: React.FC<Props> = memo(({ onClick, label }: Props) => (
   <button
     className={`${classes.button} ${
       label === 'Start' ? classes.buttonColor_start : classes.buttonColor_reset
@@ -15,4 +15,6 @@ export const Button: React.FC<Props> = ({ onClick, label }) => (
   >
     {label}
   </button>
-);
+));
+
+Button.displayName = 'Button';
