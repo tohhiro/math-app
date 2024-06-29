@@ -100,7 +100,7 @@ export const Main: React.FC = () => {
 
   const onHandleReset = useCallback(() => {
     // eslint-disable-next-line no-alert
-    const isConfirm = confirm('Are you sure you want to reset?');
+    const isConfirm = confirm('リセットしてもいいですか？');
     if (isConfirm) {
       setAnswer({ correct: 0, incorrect: 0 });
       onReset();
