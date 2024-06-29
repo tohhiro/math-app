@@ -5,12 +5,10 @@ import { HeaderColorProvider } from 'src/context/useHeaderColorContext';
 
 function App() {
   return (
-    <>
-      <HeaderColorProvider>
-        <Header />
-        <Main />
-      </HeaderColorProvider>
-    </>
+    <HeaderColorProvider>
+      <Header />
+      <Main />
+    </HeaderColorProvider>
   );
 }
 
