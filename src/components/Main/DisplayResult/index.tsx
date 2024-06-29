@@ -11,7 +11,7 @@ type Props = {
 export const DisplayResult: React.FC<Props> = memo(({ answer }: Props) => (
   <div className={classes.container}>
     {Object.keys(answer).map((key) => (
-      <p key={key}>{`${key}: ${answer[key]}`}</p>
+      <p key={key}>{`${key}: ${answer[key as keyof typeof answer]}`}</p>
     ))}
   </div>
 ));

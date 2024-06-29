@@ -24,13 +24,13 @@ export const HeaderColorProvider = ({
 };
 
 type HeaderColorContextType = {
-  get: () => HeaderColorProps;
+  get: () => HeaderColorProps | null;
   set: (color: HeaderColorProps) => void;
 };
 export const useHeaderColor = (): HeaderColorContextType => {
   const context = useContext(HeaderColorContext);
   return {
-    get: () => context?.headerColor,
+    get: () => context?.headerColor || null,
     set: (color: HeaderColorProps) => context?.setHeaderColor(color),
   };
 };

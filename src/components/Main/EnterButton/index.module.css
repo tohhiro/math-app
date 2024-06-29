@@ -1,3 +1,7 @@
+:root {
+    --buttonColor: #333333;
+}
+
 .button {
     width: 320px;
     height: 80px;
@@ -5,8 +9,8 @@
     user-select: none;
     cursor: pointer;
     border-radius: 20px;
-    border: 1px solid #333333;
-    background-color: #333333;
+    border: 1px solid var(--buttonColor);
+    background-color: var(--buttonColor);
     color: #f0f0f0;
 }
 
@@ -20,7 +24,7 @@
 }
 
 .enabled:active {
-    color: #333333;
+    color: var(--buttonColor);
     background-color: #07f76f;
     transition: .1s;
 }
