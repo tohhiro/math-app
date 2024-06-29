@@ -6,6 +6,13 @@
     "module": "commonjs",
     "jsx": "react-jsx",
     "baseUrl": "./",
+    "noEmitOnError": true,
+    "removeComments": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "*": ["*", "src/*"]
     }

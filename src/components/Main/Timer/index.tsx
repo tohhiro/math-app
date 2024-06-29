@@ -50,7 +50,7 @@ export const Timer: React.FC<Props> = memo(
     );
     const milliseconds = remainingTime % ONE_SECOND;
 
-    const showLeftTime = {
+    const showLeftTime: { [key: string]: string } = {
       minutes: padZero(minutes, 2),
       seconds: padZero(seconds, 2),
       milliseconds: padZero(milliseconds, 3),
