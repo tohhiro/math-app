@@ -3,7 +3,7 @@ import { useHeaderColor } from 'src/context/useHeaderColorContext';
 import { createQuestionRows } from 'src/components/Main/helper/createQuestionRows';
 import classes from './index.module.css';
 import { Question, QuestionProps } from './Question';
-import { Button } from './Button';
+import { StartAndResetButton } from './StartAndResetButton';
 import { Timer } from './Timer';
 import { PartsLayout } from './PartsLayout';
 import { NumberButton } from './NumberButton';
@@ -126,7 +126,7 @@ export const Main: React.FC = () => {
       </PartsLayout>
 
       <PartsLayout>
-        <Button onClick={calResetBtn} label={btn} />
+        <StartAndResetButton onClick={calResetBtn} label={btn} />
       </PartsLayout>
 
       <PartsLayout>
