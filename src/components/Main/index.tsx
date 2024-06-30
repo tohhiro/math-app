@@ -39,13 +39,13 @@ export const Main: React.FC = () => {
 
   const headerColor = useHeaderColor();
 
-  const calResetBtn = useCallback(() => {
+  const onToggleStartAndReset = useCallback(() => {
     if (btn === 'Start') {
       setBtn('Reset');
       setIsInit(true);
       setIsStarting(true);
       setIsDisabled(false);
-      resetQuestion();
+      onCreateQuestion();
       setAnswer({ correct: 0, incorrect: 0 });
       headerColor.set('running');
       return;
@@ -53,7 +53,7 @@ export const Main: React.FC = () => {
     onHandleReset();
   }, [btn]);
 
-  const onHandleAnswer = useCallback(() => {
+  const onJudgementAnswer = useCallback(() => {
     const calAnswer =
       typeof questions[0] === 'number' && typeof questions[1] === 'number'
         ? questions[0] + questions[1]
@@ -64,11 +64,11 @@ export const Main: React.FC = () => {
     } else {
       setAnswer((prev) => ({ ...prev, incorrect: prev.incorrect + 1 }));
     }
-    resetQuestion();
+    onCreateQuestion();
     setInputValue(NoDisplayValue);
   }, [inputValue, questions]);
 
-  const resetQuestion = useCallback(() => {
+  const onCreateQuestion = useCallback(() => {
     setQuestion(
       createQuestionRows({
         rowNumber: 2,
@@ -107,7 +107,7 @@ export const Main: React.FC = () => {
     }
   }, [onReset]);
 
-  const onInputValues = (val: number | 'DEL') => {
+  const onInputYourAnswer = (val: number | 'DEL') => {
     setInputValue((prev) => {
       if (val === 'DEL') {
         return prev.slice(0, -1);
@@ -126,7 +126,7 @@ export const Main: React.FC = () => {
       </PartsLayout>
 
       <PartsLayout>
-        <StartAndResetButton onClick={calResetBtn} label={btn} />
+        <StartAndResetButton onClick={onToggleStartAndReset} label={btn} />
       </PartsLayout>
 
       <PartsLayout>
@@ -142,11 +142,11 @@ export const Main: React.FC = () => {
       </PartsLayout>
 
       <PartsLayout>
-        <NumberButton onClick={onInputValues} disabled={isDisabled} />
+        <NumberButton onClick={onInputYourAnswer} disabled={isDisabled} />
       </PartsLayout>
 
       <PartsLayout>
-        <EnterButton onClick={onHandleAnswer} disabled={isDisabled} />
+        <EnterButton onClick={onJudgementAnswer} disabled={isDisabled} />
       </PartsLayout>
     </main>
   );
