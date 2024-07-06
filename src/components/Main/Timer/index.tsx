@@ -1,26 +1,19 @@
 import React, { memo } from 'react';
 import classes from './index.module.css';
 import { useTimer } from './hooks/useTimer';
+import { padZero } from './helper/padZero';
+import { calcTimes } from './helper/calcTimes';
 
 type Props = {
   isStarting: boolean;
   onOverTime: () => void;
 };
 
-const ONE_SECOND = 1000;
-
-const padZero = (num: number, length: number) =>
-  String(num).padStart(length, '0');
-
 export const Timer: React.FC<Props> = memo(
   ({ isStarting, onOverTime }: Props) => {
     const { remainingTime } = useTimer({ isStarting, onOverTime });
 
-    const minutes = Math.floor(remainingTime / (60 * ONE_SECOND));
-    const seconds = Math.floor(
-      (remainingTime % (60 * ONE_SECOND)) / ONE_SECOND,
-    );
-    const milliseconds = remainingTime % ONE_SECOND;
+    const { minutes, seconds, milliseconds } = calcTimes(remainingTime);
 
     const showLeftTime: { [key: string]: string } = {
       minutes: padZero(minutes, 2),

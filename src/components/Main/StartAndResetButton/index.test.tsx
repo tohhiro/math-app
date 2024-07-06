@@ -3,34 +3,26 @@ import '@testing-library/jest-dom/extend-expect';
 import { StartAndResetButton } from '.';
 
 describe('ボタンラベルの表示', () => {
+  const onClick = jest.fn();
+  const mockValues = {
+    onClick,
+  };
   test('ボタンラベルに「Start」と表示される', () => {
-    const onClick = jest.fn();
-    const mockValues = {
-      onClick,
-      label: 'Start',
-    };
-    render(<StartAndResetButton {...mockValues} />);
+    const label = 'Start';
+    render(<StartAndResetButton {...mockValues} label={label} />);
     const buttonLabel = screen.getByRole('button');
-    expect(buttonLabel).toHaveTextContent(mockValues.label);
+    expect(buttonLabel).toHaveTextContent(label);
   });
   test('ボタンラベルに「+」と表示される', () => {
-    const onClick = jest.fn();
-    const mockValues = {
-      onClick,
-      label: '+',
-    };
-    render(<StartAndResetButton {...mockValues} />);
+    const label = '+';
+    render(<StartAndResetButton {...mockValues} label={label} />);
     const buttonLabel = screen.getByRole('button');
-    expect(buttonLabel).toHaveTextContent(mockValues.label);
+    expect(buttonLabel).toHaveTextContent(label);
   });
   test('ボタンラベルに「Reset」と表示される', async () => {
-    const onClick = jest.fn();
-    const mockValues = {
-      onClick,
-      label: 'Reset',
-    };
-    render(<StartAndResetButton {...mockValues} />);
+    const label = 'Reset';
+    render(<StartAndResetButton {...mockValues} label={label} />);
     const plusMark = screen.getByRole('button');
-    expect(plusMark).toHaveTextContent(mockValues.label);
+    expect(plusMark).toHaveTextContent(label);
   });
 });
