@@ -1,4 +1,9 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, {
+  useState,
+  createContext,
+  useContext,
+  PropsWithChildren,
+} from 'react';
 
 type HeaderColorProps = 'stop' | 'running';
 
@@ -9,11 +14,11 @@ type HeaderColorInitProps = {
 
 const HeaderColorContext = createContext<HeaderColorInitProps | null>(null);
 
-export const HeaderColorProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const HeaderColorProvider: React.FC<
+  PropsWithChildren<{
+    children: React.ReactNode;
+  }>
+> = ({ children }) => {
   const [headerColor, setHeaderColor] = useState<HeaderColorProps>('stop');
 
   return (
