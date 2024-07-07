@@ -6,6 +6,7 @@ on:
       - main # pull requestが作成されたブランチ
     paths:
       - '!.*'
+      - '!**/.*'
       - "src/**"
       - ".github/**"
 
