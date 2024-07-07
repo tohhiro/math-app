@@ -107,17 +107,20 @@ export const Main: React.FC = () => {
     }
   }, [onReset]);
 
-  const onInputYourAnswer = (val: number | 'DEL') => {
-    setInputValue((prev) => {
-      if (val === 'DEL') {
-        return prev.slice(0, -1);
-      }
-      if (prev.includes(NoDisplayValue) || prev.includes(NotStartValue)) {
-        return String(val);
-      }
-      return prev + String(val);
-    });
-  };
+  const onInputYourAnswer = useCallback(
+    (val: number | 'DEL') => {
+      setInputValue((prev) => {
+        if (val === 'DEL') {
+          return prev.slice(0, -1);
+        }
+        if (prev.includes(NoDisplayValue) || prev.includes(NotStartValue)) {
+          return String(val);
+        }
+        return prev + String(val);
+      });
+    },
+    [setInputValue],
+  );
 
   return (
     <main className={classes.main}>
