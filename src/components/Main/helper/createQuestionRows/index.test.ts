@@ -1,15 +1,14 @@
 import '@testing-library/jest-dom/extend-expect';
 import { createQuestionRows } from '.';
 
+const mockValues = {
+  rowNumber: 2,
+  isDefaultValue: true,
+  digit: 4,
+};
+
 describe('createQuestionRows', () => {
   test('isDefaultValueが真、rowNumberが2の場合、配列要素を2つ生成し、値は----である', () => {
-    expect.assertions(5);
-    const mockValues = {
-      rowNumber: 2,
-      isDefaultValue: true,
-      digit: 4,
-    };
-
     const question = createQuestionRows(mockValues);
 
     expect(question.length).toBe(mockValues.rowNumber);
@@ -19,14 +18,10 @@ describe('createQuestionRows', () => {
     expect(question[1]).toBe('----');
   });
   test('isDefaultValueが偽、rowNumberが2の場合、配列要素を2つ生成し、値は4桁の数値である', () => {
-    expect.assertions(5);
-    const mockValues = {
-      rowNumber: 2,
+    const question = createQuestionRows({
+      ...mockValues,
       isDefaultValue: false,
-      digit: 4,
-    };
-
-    const question = createQuestionRows(mockValues);
+    });
 
     expect(question.length).toBe(mockValues.rowNumber);
     expect(typeof question[0] === 'number').toBeTruthy();
