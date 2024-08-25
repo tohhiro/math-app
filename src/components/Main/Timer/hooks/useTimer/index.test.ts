@@ -1,9 +1,15 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useTimer } from '.';
 
-jest.useFakeTimers();
-
 describe('useTimer', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   test('スタートされていない場合、タイマーが指定された時間に初期化される', () => {
     const { result } = renderHook(
       () => useTimer({ isStarting: false, onOverTime: jest.fn() }),
