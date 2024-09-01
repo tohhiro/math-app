@@ -19,5 +19,3 @@ export const EnterButton: React.FC<Props> = memo(
     </button>
   ),
 );
-
-EnterButton.displayName = 'EnterButton';

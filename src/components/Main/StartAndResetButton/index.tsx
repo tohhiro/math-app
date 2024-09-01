@@ -20,5 +20,3 @@ export const StartAndResetButton: React.FC<Props> = memo(
     </button>
   ),
 );
-
-StartAndResetButton.displayName = 'StartAndResetButton';

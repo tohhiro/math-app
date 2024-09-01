@@ -27,5 +27,3 @@ export const NumberButton: React.FC<Props> = memo(
     </div>
   ),
 );
-
-NumberButton.displayName = 'NumberButton';

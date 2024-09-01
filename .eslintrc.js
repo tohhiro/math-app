@@ -44,6 +44,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'operator-linebreak': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/display-name': 'off',
   },
   // eslint-disable-next-line semi
 };

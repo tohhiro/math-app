@@ -15,5 +15,3 @@ export const DisplayResult: React.FC<Props> = memo(({ answer }: Props) => (
     ))}
   </div>
 ));
-
-DisplayResult.displayName = 'DisplayResult';

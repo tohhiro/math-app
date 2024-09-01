@@ -37,5 +37,3 @@ export const Timer: React.FC<Props> = memo(
     );
   },
 );
-
-Timer.displayName = 'Timer';
