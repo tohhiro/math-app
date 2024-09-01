@@ -25,5 +25,3 @@ export const Question: React.FC<QuestionsProps> = memo(
     );
   },
 );
-
-Question.displayName = 'Question';
