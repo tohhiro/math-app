@@ -14,11 +14,9 @@ type HeaderColorInitProps = {
 
 const HeaderColorContext = createContext<HeaderColorInitProps | null>(null);
 
-export const HeaderColorProvider: React.FC<
-  PropsWithChildren<{
-    children: React.ReactNode;
-  }>
-> = ({ children }) => {
+export const HeaderColorProvider: React.FC<PropsWithChildren> = ({
+  children,
+}) => {
   const [headerColor, setHeaderColor] = useState<HeaderColorProps>('stop');
 
   return (
