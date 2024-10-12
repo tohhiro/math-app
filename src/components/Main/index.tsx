@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useHeaderColor } from 'src/context/useHeaderColorContext';
-import { createQuestionRows } from 'src/components/Main/helper/createQuestionRows';
+import { createQuestionRows } from 'src/components/Main/helpers/createQuestionRows';
 import classes from './index.module.css';
 import { Question, QuestionProps } from './Question';
 import { StartAndResetButton } from './StartAndResetButton';

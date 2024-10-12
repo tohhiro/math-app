@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import classes from './index.module.css';
 import { useTimer } from './hooks/useTimer';
-import { padZero } from './helper/padZero';
-import { calcTimes } from './helper/calcTimes';
+import { padZero } from './helpers/padZero';
+import { calcTimes } from './helpers/calcTimes';
 
 type Props = {
   isStarting: boolean;
