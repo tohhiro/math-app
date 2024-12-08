@@ -5,6 +5,7 @@
     "resolveJsonModule": true,
     "module": "commonjs",
     "jsx": "react-jsx",
+    "lib": ["dom", "esnext"],
     "baseUrl": "./",
     "noEmitOnError": true,
     "removeComments": true,
