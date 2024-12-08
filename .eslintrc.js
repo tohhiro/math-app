@@ -8,6 +8,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'react-app',
   ],
   overrides: [
     {
@@ -46,5 +47,4 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/display-name': 'off',
   },
-  // eslint-disable-next-line semi
 };
