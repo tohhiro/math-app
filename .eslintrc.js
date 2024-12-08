@@ -25,7 +25,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['@typescript-eslint'],
   rules: {
     'no-await-in-loop': 'off',
     'no-plusplus': 'off',
