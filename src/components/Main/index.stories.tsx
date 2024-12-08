@@ -6,4 +6,4 @@ export default {
   component: Main,
 };
 
-export const Default: React.FC = (): JSX.Element => <Main />;
+export const Default: React.FC = () => <Main />;

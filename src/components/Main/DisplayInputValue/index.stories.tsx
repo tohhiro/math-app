@@ -6,7 +6,7 @@ export default {
   component: DisplayInputValue,
 };
 
-export const Default: React.FC = (): JSX.Element => {
+export const Default: React.FC = () => {
   const mockData = {
     value: '1234',
   };

@@ -6,7 +6,7 @@ export default {
   component: DisplayResult,
 };
 
-export const Default: React.FC = (): JSX.Element => {
+export const Default: React.FC = () => {
   const mockData = {
     answer: {
       correct: 0,
