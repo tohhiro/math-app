@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
+    "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
+    "strip-ansi": "^7.1.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -65,7 +67,6 @@
     "eslint": "^9.16.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-react-app": "^7.0.1",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-n": "^16.2.0",
@@ -88,5 +89,8 @@
     "ts-jest": "^29.2.5",
     "typescript": "^5.7.2",
     "webpack": "^5.88.1"
+  },
+  "engines": {
+    "node": "^20.11.0"
   }
 }
