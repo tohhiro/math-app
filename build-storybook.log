@@ -1,0 +1,33 @@
+yarn run v1.22.17
+$ storybook build --output-dir=/var/folders/nr/shhxjsfd6d76gd4nkzv5q34r0000gn/T/chromatic--9946-U3GUW83Iy2sR
+@storybook/cli v7.4.6
+
+info => Cleaning outputDir: /var/folders/nr/shhxjsfd6d76gd4nkzv5q34r0000gn/T/chromatic--9946-U3GUW83Iy2sR
+info => Loading presets
+info => Building manager..
+info => Manager built (203 ms)
+info => Compiling preview..
+info => Copying static files: /Users/to-hiro/github/math-app/node_modules/@storybook/manager/static at /var/folders/nr/shhxjsfd6d76gd4nkzv5q34r0000gn/T/chromatic--9946-U3GUW83Iy2sR/sb-common-assets
+WARN No story files found for the specified pattern: src/**/*.mdx
+info Addon-docs: using MDX2
+info => Loading Webpack configuration from `node_modules/react-scripts`
+info => Removing existing JavaScript and TypeScript rules.
+info => Modifying Create React App rules.
+info => Using default Webpack5 setup
+info => Copying static files: /Users/to-hiro/github/math-app/public at /var/folders/nr/shhxjsfd6d76gd4nkzv5q34r0000gn/T/chromatic--9946-U3GUW83Iy2sR/
+info => Preview built (18 s)
+WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+WARN This can impact web performance.
+WARN Assets: 
+WARN   125.e9249850.iframe.bundle.js (690 KiB)
+WARN   426.a40d3233.iframe.bundle.js (583 KiB)
+WARN   862.e03aad47.iframe.bundle.js (740 KiB)
+WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+WARN Entrypoints:
+WARN   main (757 KiB)
+WARN       runtime~main.bd17c98d.iframe.bundle.js
+WARN       862.e03aad47.iframe.bundle.js
+WARN       main.64bb9807.iframe.bundle.js
+WARN 
+info => Output directory: /var/folders/nr/shhxjsfd6d76gd4nkzv5q34r0000gn/T/chromatic--9946-U3GUW83Iy2sR
+Done in 23.09s.

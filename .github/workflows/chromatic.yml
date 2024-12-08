@@ -1,0 +1,33 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main # pull requestが作成されたブランチ
+    paths:
+      - '!.*'
+      - '!**/.*'
+      - "src/**"
+      - ".github/**"
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+
+      - name: Install npm
+        run: npm install
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          buildScriptName: 'build-storybook'
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
