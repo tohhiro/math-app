@@ -6,7 +6,7 @@ export default {
   component: StartAndResetButton,
 };
 
-export const Start: React.FC = (): JSX.Element => {
+export const Start: React.FC = () => {
   const mockData = {
     onClick: () => {},
     label: 'Start',
@@ -16,7 +16,7 @@ export const Start: React.FC = (): JSX.Element => {
   return <StartAndResetButton {...mockData} />;
 };
 
-export const Reset: React.FC = (): JSX.Element => {
+export const Reset: React.FC = () => {
   const mockData = {
     onClick: () => {},
     label: 'Reset',
@@ -26,7 +26,7 @@ export const Reset: React.FC = (): JSX.Element => {
   return <StartAndResetButton {...mockData} />;
 };
 
-export const Disabled: React.FC = (): JSX.Element => {
+export const Disabled: React.FC = () => {
   const mockData = {
     onClick: () => {},
     label: 'Reset',

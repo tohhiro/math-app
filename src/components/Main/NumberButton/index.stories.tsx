@@ -6,7 +6,7 @@ export default {
   component: NumberButton,
 };
 
-export const Default: React.FC = (): JSX.Element => {
+export const Default: React.FC = () => {
   const mockData = {
     onClick: () => {},
     disabled: false,
@@ -15,7 +15,7 @@ export const Default: React.FC = (): JSX.Element => {
   return <NumberButton {...mockData} />;
 };
 
-export const Disabled: React.FC = (): JSX.Element => {
+export const Disabled: React.FC = () => {
   const mockData = {
     onClick: () => {},
     disabled: true,
