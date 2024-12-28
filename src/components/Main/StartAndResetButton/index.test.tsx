@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { StartAndResetButton } from '.';
 
 describe('ボタンラベルの表示', () => {
@@ -9,25 +9,31 @@ describe('ボタンラベルの表示', () => {
 
   test('ボタンラベルに「Start」と表示される', () => {
     const label = 'Start';
-    render(<StartAndResetButton {...mockValues} label={label} />);
+    const { getByRole } = render(
+      <StartAndResetButton {...mockValues} label={label} />,
+    );
 
-    const buttonLabel = screen.getByRole('button');
+    const buttonLabel = getByRole('button');
     expect(buttonLabel).toHaveTextContent(label);
   });
 
   test('ボタンラベルに「+」と表示される', () => {
     const label = '+';
-    render(<StartAndResetButton {...mockValues} label={label} />);
+    const { getByRole } = render(
+      <StartAndResetButton {...mockValues} label={label} />,
+    );
 
-    const buttonLabel = screen.getByRole('button');
+    const buttonLabel = getByRole('button');
     expect(buttonLabel).toHaveTextContent(label);
   });
 
   test('ボタンラベルに「Reset」と表示される', async () => {
     const label = 'Reset';
-    render(<StartAndResetButton {...mockValues} label={label} />);
+    const { getByRole } = render(
+      <StartAndResetButton {...mockValues} label={label} />,
+    );
 
-    const plusMark = screen.getByRole('button');
+    const plusMark = getByRole('button');
     expect(plusMark).toHaveTextContent(label);
   });
 });
