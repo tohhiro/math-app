@@ -30,9 +30,7 @@ describe('Timer', () => {
 
     jest.advanceTimersByTime(ONE_SECOND);
 
-    await waitFor(() => {
-      const timerLabel = getByTestId('timer');
-      expect(timerLabel).toHaveTextContent(/^04:/);
-    });
+    const timerLabel = getByTestId('timer');
+    await waitFor(() => expect(timerLabel).toHaveTextContent(/^04:/));
   });
 });
