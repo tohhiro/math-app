@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { PartsLayout } from '.';
 
 describe('PartsLayout', () => {
@@ -8,7 +8,7 @@ describe('PartsLayout', () => {
       children: <div>{mockStr}</div>,
     };
 
-    const { getByText } = render(<PartsLayout {...mockValues} />);
-    expect(getByText(mockStr)).toBeInTheDocument();
+    render(<PartsLayout {...mockValues} />);
+    expect(screen.getByText(mockStr)).toBeInTheDocument();
   });
 });

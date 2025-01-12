@@ -1,11 +1,11 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Header } from '.';
 
 describe('Header', () => {
   test('headerに「暗算しましょう。」というテキストが表示される', () => {
-    const { getByText } = render(<Header />);
+    render(<Header />);
 
-    const headerElement = getByText('暗算しましょう');
+    const headerElement = screen.getByText('暗算しましょう');
     expect(headerElement).toBeInTheDocument();
   });
 });
