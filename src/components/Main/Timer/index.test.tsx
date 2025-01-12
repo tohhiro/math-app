@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Timer } from '.';
 
 describe('Timer', () => {
@@ -19,18 +19,18 @@ describe('Timer', () => {
   });
 
   test('1000*10*60を渡すと05:00:000が表示される', () => {
-    const { getByTestId } = render(<Timer {...mockValues} />);
+    render(<Timer {...mockValues} />);
 
-    const timerLabel = getByTestId('timer');
+    const timerLabel = screen.getByTestId('timer');
     expect(timerLabel).toHaveTextContent('05:00:000');
   });
 
   test('1000*10*60を渡たし、1秒待つと4秒台で表示される', async () => {
-    const { getByTestId } = render(<Timer {...mockValues} isStarting />);
+    render(<Timer {...mockValues} isStarting />);
 
     jest.advanceTimersByTime(ONE_SECOND);
 
-    const timerLabel = getByTestId('timer');
+    const timerLabel = screen.getByTestId('timer');
     await waitFor(() => expect(timerLabel).toHaveTextContent(/^04:/));
   });
 });
