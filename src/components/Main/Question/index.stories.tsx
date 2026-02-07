@@ -6,7 +6,7 @@ export default {
   component: Question,
 };
 
-export const Default: React.FC = (): JSX.Element => {
+export const Default: React.FC = () => {
   const defaultQuestion = '----' as QuestionProps;
   const mockData = {
     questions: [defaultQuestion, defaultQuestion],
@@ -14,7 +14,7 @@ export const Default: React.FC = (): JSX.Element => {
   return <Question {...mockData} />;
 };
 
-export const ShowQuestion: React.FC = (): JSX.Element => {
+export const ShowQuestion: React.FC = () => {
   const mockData = {
     questions: [1234, 5678],
   };

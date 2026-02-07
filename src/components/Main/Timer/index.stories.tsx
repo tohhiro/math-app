@@ -6,7 +6,7 @@ export default {
   component: Timer,
 };
 
-export const Default: React.FC = (): JSX.Element => {
+export const Default: React.FC = () => {
   const mock = {
     isStarting: false,
     onOverTime: () => {},

@@ -9,17 +9,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
   ],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: ['.eslintrc.{js,cjs}'],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
-  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -44,6 +33,14 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'operator-linebreak': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/display-name': 'off',
   },
-  // eslint-disable-next-line semi
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+      },
+    },
+  ],
 };

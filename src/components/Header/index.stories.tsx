@@ -6,4 +6,4 @@ export default {
   component: Header,
 };
 
-export const Default: React.FC = (): JSX.Element => <Header />;
+export const Default: React.FC = () => <Header />;

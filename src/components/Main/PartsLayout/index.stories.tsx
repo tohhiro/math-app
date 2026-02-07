@@ -6,7 +6,7 @@ export default {
   component: PartsLayout,
 };
 
-export const Default: React.FC = (): JSX.Element => {
+export const Default: React.FC = () => {
   const mockData = {
     children: <div>Childrenの要素</div>,
   };
