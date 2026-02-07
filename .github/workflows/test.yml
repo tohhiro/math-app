@@ -9,6 +9,8 @@ on:
       - '!**/.*'
       - "src/**"
       - ".github/**"
+      - "package.json"
+      - "yarn.lock"
 
 jobs:
   test:
