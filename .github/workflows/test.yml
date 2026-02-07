@@ -5,10 +5,12 @@ on:
     branches:
       - main # pull requestが作成されたブランチ
     paths:
-      - '!.*'
-      - '!**/.*'
+      - "!.*"
+      - "!**/.*"
       - "src/**"
       - ".github/**"
+      - "package.json"
+      - "yarn.lock"
 
 jobs:
   test:
